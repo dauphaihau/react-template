@@ -1,0 +1,103 @@
+{
+  "name": "@dauphaihau/react-template",
+  "version": "1.0.0",
+  "description": "A modern TanStack Start starter template with React, TanStack Router, React Query, and Tailwind CSS. Built with TypeScript, Feature-Sliced Design, and best practices.",
+  "license": "MIT",
+  "author": "dauphaihau",
+  "homepage": "https://github.com/dauphaihau/react-template#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dauphaihau/react-template.git",
+    "directory": "packages/template"
+  },
+  "bugs": {
+    "url": "https://github.com/dauphaihau/react-template/issues"
+  },
+  "keywords": [
+    "react",
+    "tanstack",
+    "tanstack-start",
+    "tanstack-router",
+    "starter-template",
+    "typescript",
+    "tailwind",
+    "vite",
+    "feature-sliced-design",
+    "fsd"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "files": [
+    "src",
+    "public",
+    "docs",
+    "index.html",
+    "vite.config.ts",
+    "tsconfig.json",
+    "tailwind.config.ts",
+    "eslint.config.js",
+    "prettier.config.js",
+    ".prettierignore",
+    "components.json",
+    "content-collections.ts",
+    "README.md"
+  ],
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "scripts": {
+    "dev": "vite dev --port 3000",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint",
+    "format": "prettier --check .",
+    "check": "prettier --write . && eslint --fix"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/react-devtools": "^0.7.0",
+    "@tanstack/react-query": "^5.90.21",
+    "@tanstack/react-query-devtools": "^5.91.3",
+    "@tanstack/react-router": "^1.132.0",
+    "@tanstack/react-router-devtools": "^1.132.0",
+    "@tanstack/router-plugin": "^1.132.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "ky": "^1.14.3",
+    "lucide-react": "^0.545.0",
+    "plslog": "^1.1.0",
+    "@base-ui/react": "^1.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwind-merge": "^3.5.0",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "@content-collections/core": "^0.13.1",
+    "@content-collections/markdown": "^0.1.4",
+    "@content-collections/mdx": "^0.2.2",
+    "@content-collections/vite": "^0.2.8",
+    "@tailwindcss/typography": "^0.5.16",
+    "@tanstack/devtools-vite": "^0.3.11",
+    "@tanstack/eslint-config": "^0.3.0",
+    "@tanstack/router-plugin": "^1.132.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.2.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "jsdom": "^27.0.0",
+    "prettier": "^3.5.3",
+    "remark-gfm": "^4.0.1",
+    "typescript": "^5.7.2",
+    "vite": "^7.1.7",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.0.5",
+    "zod": "^4.3.5"
+  }
+}
