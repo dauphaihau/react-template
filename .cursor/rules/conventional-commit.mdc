@@ -1,0 +1,6 @@
+---
+alwaysApply: false
+---
+type(scope): message
+
+Return only the commit message.
