@@ -1,6 +1,6 @@
-import { Component } from 'react'
-import type { ReactNode } from 'react'
-import { logError } from './logger'
+import { Component } from 'react';
+import type { ReactNode } from 'react';
+import { logError } from './logger';
 
 export interface ErrorBoundaryProps {
   children: ReactNode
@@ -19,35 +19,35 @@ export class ErrorBoundary extends Component<
   ErrorBoundaryState
 > {
   constructor(props: ErrorBoundaryProps) {
-    super(props)
+    super(props);
     this.state = {
       hasError: false,
       error: null,
-    }
+    };
   }
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
     return {
       hasError: true,
       error,
-    }
+    };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
     // Log the error to an error reporting service
     logError(error, {
       componentStack: errorInfo.componentStack ?? undefined,
-    })
+    });
 
     // Call custom error handler if provided
     if (this.props.onError) {
-      this.props.onError(error, errorInfo)
+      this.props.onError(error, errorInfo);
     }
   }
 
   componentDidUpdate(prevProps: ErrorBoundaryProps): void {
-    const { resetKeys } = this.props
-    const { hasError } = this.state
+    const { resetKeys } = this.props;
+    const { hasError } = this.state;
 
     // Reset error boundary when resetKeys change
     if (
@@ -56,7 +56,7 @@ export class ErrorBoundary extends Component<
       prevProps.resetKeys &&
       !areKeysEqual(prevProps.resetKeys, resetKeys)
     ) {
-      this.reset()
+      this.reset();
     }
   }
 
@@ -64,20 +64,20 @@ export class ErrorBoundary extends Component<
     this.setState({
       hasError: false,
       error: null,
-    })
-  }
+    });
+  };
 
   render(): ReactNode {
-    const { hasError, error } = this.state
-    const { children, fallback } = this.props
+    const { hasError, error } = this.state;
+    const { children, fallback } = this.props;
 
     if (hasError && error) {
       // Render custom fallback if provided
       if (fallback) {
         if (typeof fallback === 'function') {
-          return fallback(error, this.reset)
+          return fallback(error, this.reset);
         }
-        return fallback
+        return fallback;
       }
 
       // Default fallback UI
@@ -96,14 +96,14 @@ export class ErrorBoundary extends Component<
             </button>
           </div>
         </div>
-      )
+      );
     }
 
-    return children
+    return children;
   }
 }
 
 function areKeysEqual(a: Array<unknown>, b: Array<unknown>): boolean {
-  if (a.length !== b.length) return false
-  return a.every((item, index) => Object.is(item, b[index]))
+  if (a.length !== b.length) return false;
+  return a.every((item, index) => Object.is(item, b[index]));
 }

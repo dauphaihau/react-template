@@ -1,38 +1,39 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { useState } from 'react'
-import { useErrorHandler } from '#/shared/lib/error-boundary'
+import { createFileRoute } from '@tanstack/react-router';
+import { useState } from 'react';
+import { useErrorHandler } from '#/shared/lib/error-boundary';
 
 export const Route = createFileRoute('/test-error')({
   component: TestErrorPage,
-})
+});
 
 function TestErrorPage() {
-  const [shouldThrow, setShouldThrow] = useState(false)
-  const { throwError } = useErrorHandler()
+  const [shouldThrow, setShouldThrow] = useState(false);
+  const { throwError } = useErrorHandler();
 
   // This will trigger the error boundary
   if (shouldThrow) {
-    throw new Error('Test error: Synchronous render error')
+    throw new Error('Test error: Synchronous render error');
   }
 
   const throwAsyncError = () => {
     setTimeout(() => {
-      throw new Error('Test error: Async error (check console)')
-    }, 100)
-  }
+      throw new Error('Test error: Async error (check console)');
+    }, 100);
+  };
 
   const throwSyncError = () => {
-    setShouldThrow(true)
-  }
+    setShouldThrow(true);
+  };
 
   // Wire to error boundary: throwError causes a re-render that throws, so the boundary catches it
   const throwNetworkError = async () => {
     try {
-      await fetch('https://invalid-url-that-does-not-exist.com/api')
-    } catch {
-      throwError(new Error('Network error: Failed to fetch'))
+      await fetch('https://invalid-url-that-does-not-exist.com/api');
     }
-  }
+    catch {
+      throwError(new Error('Network error: Failed to fetch'));
+    }
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -122,5 +123,5 @@ function TestErrorPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -2,6 +2,22 @@
 
 A CLI scaffolding tool for a production-ready **TanStack Start + React 19** app with [Feature-Sliced Design](https://feature-sliced.design/) architecture.
 
+## What's Included
+
+**Built-in** — every generated project includes:
+
+- Error boundary with fallback UI — catches runtime errors gracefully
+- Type-safe env vars — Zod-validated `env` object, fails fast on missing vars
+- Pre-commit: typecheck + lint — pre-push: tests (Husky + lint-staged)
+- Theme toggle — light/dark mode via CSS variables
+- File-based routing — TanStack Router with nested layouts
+- UI primitives — shadcn/ui components + Tailwind CSS v4
+- FSD architecture — enforced layer boundaries (routes → widgets → features → entities → shared)
+
+**Optional** — added via CLI prompt:
+
+- Auth — `AuthContext`, `useAuth` hook, login/register routes (mock, swap for real API)
+
 ## Quick Start
 
 ```bash

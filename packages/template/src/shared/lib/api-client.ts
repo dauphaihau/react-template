@@ -1,9 +1,9 @@
-import ky from 'ky'
+import ky from 'ky';
 
-import { env } from './env'
+import { env } from './env';
 
 const apiClient = ky.create({
   prefixUrl: env.VITE_API_URL,
-})
+});
 
-export default apiClient
+export default apiClient;

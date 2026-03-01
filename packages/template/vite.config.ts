@@ -1,15 +1,15 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite'
-import { devtools } from '@tanstack/devtools-vite'
-import contentCollections from '@content-collections/vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
+import { defineConfig } from 'vite';
+import { devtools } from '@tanstack/devtools-vite';
+import contentCollections from '@content-collections/vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
-import { tanstackRouter } from '@tanstack/router-plugin/vite'
+import { tanstackRouter } from '@tanstack/router-plugin/vite';
 
-import viteReact from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import viteReact from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 
-const isTest = process.env.VITEST === 'true'
+const isTest = process.env.VITEST === 'true';
 
 const config = defineConfig({
   plugins: [
@@ -25,6 +25,6 @@ const config = defineConfig({
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
     globals: false,
   },
-})
+});
 
-export default config
+export default config;

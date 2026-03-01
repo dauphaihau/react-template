@@ -74,5 +74,5 @@ export function ErrorDisplay({
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,9 +1,9 @@
-import plslog from 'plslog'
+import plslog from 'plslog';
 
-type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'none'
+type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'none';
 
-const defaultLevel: LogLevel = import.meta.env.DEV ? 'debug' : 'info'
-const level = (import.meta.env.VITE_LOG_LEVEL as LogLevel | undefined) ?? defaultLevel
+const defaultLevel: LogLevel = import.meta.env.DEV ? 'debug' : 'info';
+const level = (import.meta.env.VITE_LOG_LEVEL as LogLevel | undefined) ?? defaultLevel;
 
 plslog.configure({
   level,
@@ -12,7 +12,7 @@ plslog.configure({
     enabled: true,
     flushInterval: 2000,
   },
-})
+});
 
 /**
  * Get a logger instance. Use with optional namespace or options.
@@ -25,6 +25,6 @@ plslog.configure({
  * @example
  * const log = logger({ namespace: 'auth', level: 'debug' })
  */
-export const logger = plslog
+export const logger = plslog;
 
-export default logger
+export default logger;

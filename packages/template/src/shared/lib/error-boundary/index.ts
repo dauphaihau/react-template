@@ -1,7 +1,7 @@
-export { ErrorBoundary } from './ErrorBoundary'
-export type { ErrorBoundaryProps } from './ErrorBoundary'
-export { useErrorHandler } from './useErrorHandler'
-export { logError, formatError, isRecoverableError } from './logger'
+export { ErrorBoundary } from './ErrorBoundary';
+export type { ErrorBoundaryProps } from './ErrorBoundary';
+export { useErrorHandler } from './useErrorHandler';
+export { logError, formatError, isRecoverableError } from './logger';
 export {
   AppError,
   NotFoundError,
@@ -13,6 +13,6 @@ export {
   isError,
   serializeError,
   getUserFriendlyMessage,
-  isRetryableError,
-} from './error-types'
-export type { SerializedError } from './error-types'
+  isRetryableError
+} from './error-types';
+export type { SerializedError } from './error-types';

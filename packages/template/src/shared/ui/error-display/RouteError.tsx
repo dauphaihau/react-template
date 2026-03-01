@@ -1,4 +1,4 @@
-import { ErrorDisplay } from './ErrorDisplay'
+import { ErrorDisplay } from './ErrorDisplay';
 
 interface RouteErrorProps {
   error: Error
@@ -16,7 +16,7 @@ export function RouteError({
   onGoBack,
   showDetails = false,
 }: RouteErrorProps) {
-  const message = error.message || 'An unexpected error occurred'
+  const message = error.message || 'An unexpected error occurred';
   return (
     <ErrorDisplay
       title="Something went wrong"
@@ -26,5 +26,5 @@ export function RouteError({
       onRetry={reset}
       onGoBack={onGoBack}
     />
-  )
+  );
 }

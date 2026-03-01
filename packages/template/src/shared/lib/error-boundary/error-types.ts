@@ -11,55 +11,55 @@ export interface SerializedError {
 }
 
 export class AppError extends Error {
-  public readonly statusCode: number
-  public readonly timestamp: string
-  public readonly isOperational: boolean
+  public readonly statusCode: number;
+  public readonly timestamp: string;
+  public readonly isOperational: boolean;
 
   constructor(
     message: string,
     statusCode: number = 500,
-    isOperational: boolean = true,
+    isOperational: boolean = true
   ) {
-    super(message)
-    this.name = this.constructor.name
-    this.statusCode = statusCode
-    this.timestamp = new Date().toISOString()
-    this.isOperational = isOperational
+    super(message);
+    this.name = this.constructor.name;
+    this.statusCode = statusCode;
+    this.timestamp = new Date().toISOString();
+    this.isOperational = isOperational;
 
     // V8/Node only; not available in all browsers (e.g. Firefox, Safari)
     if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, this.constructor)
+      Error.captureStackTrace(this, this.constructor);
     }
   }
 }
 
 export class NotFoundError extends AppError {
   constructor(message: string = 'Resource not found') {
-    super(message, 404)
+    super(message, 404);
   }
 }
 
 export class ValidationError extends AppError {
   constructor(message: string = 'Validation failed') {
-    super(message, 400)
+    super(message, 400);
   }
 }
 
 export class UnauthorizedError extends AppError {
   constructor(message: string = 'Unauthorized access') {
-    super(message, 401)
+    super(message, 401);
   }
 }
 
 export class ForbiddenError extends AppError {
   constructor(message: string = 'Access forbidden') {
-    super(message, 403)
+    super(message, 403);
   }
 }
 
 export class NetworkError extends AppError {
   constructor(message: string = 'Network request failed') {
-    super(message, 503)
+    super(message, 503);
   }
 }
 
@@ -67,14 +67,14 @@ export class NetworkError extends AppError {
  * Type guard to check if error is an AppError
  */
 export function isAppError(error: unknown): error is AppError {
-  return error instanceof AppError
+  return error instanceof AppError;
 }
 
 /**
  * Type guard to check if error is a standard Error
  */
 export function isError(error: unknown): error is Error {
-  return error instanceof Error
+  return error instanceof Error;
 }
 
 /**
@@ -88,7 +88,7 @@ export function serializeError(error: unknown): SerializedError {
       stack: error.stack,
       statusCode: error.statusCode,
       timestamp: error.timestamp,
-    }
+    };
   }
 
   if (isError(error)) {
@@ -97,7 +97,7 @@ export function serializeError(error: unknown): SerializedError {
       message: error.message,
       stack: error.stack,
       timestamp: new Date().toISOString(),
-    }
+    };
   }
 
   // Handle non-Error objects
@@ -105,7 +105,7 @@ export function serializeError(error: unknown): SerializedError {
     name: 'UnknownError',
     message: String(error),
     timestamp: new Date().toISOString(),
-  }
+  };
 }
 
 /**
@@ -113,14 +113,14 @@ export function serializeError(error: unknown): SerializedError {
  */
 export function getUserFriendlyMessage(error: unknown): string {
   if (isAppError(error)) {
-    return error.message
+    return error.message;
   }
 
   if (isError(error)) {
-    return error.message
+    return error.message;
   }
 
-  return 'An unexpected error occurred. Please try again.'
+  return 'An unexpected error occurred. Please try again.';
 }
 
 /**
@@ -129,18 +129,18 @@ export function getUserFriendlyMessage(error: unknown): string {
 export function isRetryableError(error: unknown): boolean {
   if (isAppError(error)) {
     // Retry on server errors and network errors
-    return error.statusCode >= 500
+    return error.statusCode >= 500;
   }
 
   // Retry on network-related errors
   if (isError(error)) {
-    const message = error.message.toLowerCase()
+    const message = error.message.toLowerCase();
     return (
       message.includes('network') ||
       message.includes('timeout') ||
       message.includes('fetch')
-    )
+    );
   }
 
-  return false
+  return false;
 }

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react';
 
 interface UseErrorHandlerReturn {
   error: Error | null
@@ -10,24 +10,24 @@ interface UseErrorHandlerReturn {
  * Hook to programmatically throw errors that will be caught by error boundaries
  */
 export function useErrorHandler(): UseErrorHandlerReturn {
-  const [error, setError] = useState<Error | null>(null)
+  const [error, setError] = useState<Error | null>(null);
 
   const throwError = useCallback((err: Error) => {
-    setError(err)
-  }, [])
+    setError(err);
+  }, []);
 
   const resetError = useCallback(() => {
-    setError(null)
-  }, [])
+    setError(null);
+  }, []);
 
   // Throw error in render phase so it's caught by error boundary
   if (error) {
-    throw error
+    throw error;
   }
 
   return {
     error,
     throwError,
     resetError,
-  }
+  };
 }

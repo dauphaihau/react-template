@@ -1,5 +1,5 @@
-import { queryOptions } from '@tanstack/react-query'
-import { fetchPostById, fetchPosts } from '#/shared/api/blog'
+import { queryOptions } from '@tanstack/react-query';
+import { fetchPostById, fetchPosts } from '#/shared/api/blog';
 
 export const blogQueries = {
   list: (page = 1) =>
@@ -13,4 +13,4 @@ export const blogQueries = {
       queryKey: ['blog', 'detail', id],
       queryFn: () => fetchPostById(id),
     }),
-}
+};
