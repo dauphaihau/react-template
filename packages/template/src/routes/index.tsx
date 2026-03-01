@@ -1,4 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
+import { toast } from 'sonner'
 import { Button } from '#/shared/ui'
 
 export const Route = createFileRoute('/')({ component: App })
@@ -64,6 +65,72 @@ function App() {
             <p className="m-0 text-sm text-[var(--sea-ink-soft)]">{desc}</p>
           </article>
         ))}
+      </section>
+
+      <section className="island-shell mt-8 rounded-2xl p-6">
+        <p className="island-kicker mb-2">Notifications</p>
+        <p className="mb-4 text-sm text-[var(--sea-ink-soft)]">
+          Toast notifications via{' '}
+          <a
+            href="https://sonner.emilkowal.ski"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2"
+          >
+            Sonner
+          </a>
+          .
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => toast('Event has been created')}
+          >
+            Default
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => toast.success('Changes saved successfully')}
+          >
+            Success
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => toast.error('Something went wrong')}
+          >
+            Error
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => toast.warning('This action cannot be undone')}
+          >
+            Warning
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => toast.info('New update available')}
+          >
+            Info
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() =>
+              toast.promise(new Promise((res) => setTimeout(res, 2000)), {
+                loading: 'Saving...',
+                success: 'Saved!',
+                error: 'Failed to save',
+              })
+            }
+          >
+            Promise
+          </Button>
+        </div>
       </section>
 
       <section className="island-shell mt-8 rounded-2xl p-6">

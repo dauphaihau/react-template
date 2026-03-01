@@ -1,7 +1,9 @@
 import ky from 'ky'
 
+import { env } from './env'
+
 const apiClient = ky.create({
-  prefixUrl: import.meta.env.VITE_API_URL,
+  prefixUrl: env.VITE_API_URL,
 })
 
 export default apiClient
