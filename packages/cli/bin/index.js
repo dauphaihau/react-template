@@ -2,7 +2,7 @@
 
 // src/index.ts
 import { Command } from "commander";
-import { input, select, checkbox } from "@inquirer/prompts";
+import * as p from "@clack/prompts";
 import ora from "ora";
 import chalk2 from "chalk";
 import { resolve } from "path";
@@ -140,80 +140,96 @@ var log = {
 
 // src/index.ts
 var program = new Command();
-program.name("create-react-template").description("Scaffold a TanStack Start + React 19 + FSD app").argument("[project-name]", "Name of the new project").option("--skip-install", "Skip installing dependencies").action(async (projectNameArg, opts) => {
-  console.log();
-  console.log(chalk2.bold("  create-react-template"));
-  console.log();
-  let projectName;
-  if (projectNameArg) {
-    projectName = projectNameArg;
-  } else {
-    projectName = await input({
-      message: "Project name",
-      default: "my-app",
-      validate: (v) => {
-        if (!v.trim()) return "Project name is required";
-        if (!/^[a-z0-9-]+$/.test(v.trim())) {
-          return "Use only lowercase letters, numbers, and hyphens";
+program.name("create-react-template").description("Scaffold a TanStack Start + React 19 + FSD app").argument("[project-name]", "Name of the new project").option("--skip-install", "Skip installing dependencies").action(
+  async (projectNameArg, opts) => {
+    p.intro(chalk2.bold("create-react-template"));
+    let projectName;
+    if (projectNameArg) {
+      projectName = projectNameArg;
+    } else {
+      const projectNameInput = await p.text({
+        message: "Project name",
+        defaultValue: "my-app",
+        validate: (v) => {
+          if (!v.trim()) return "Project name is required";
+          if (!/^[a-z0-9-]+$/.test(v.trim())) {
+            return "Use only lowercase letters, numbers, and hyphens";
+          }
         }
-        return true;
+      });
+      if (p.isCancel(projectNameInput)) {
+        p.cancel("Operation cancelled");
+        process.exit(0);
       }
-    });
-  }
-  const projectDir = resolve(process.cwd(), projectName);
-  if (existsSync2(projectDir)) {
-    log.error(`Directory "${projectName}" already exists`);
-    process.exit(1);
-  }
-  const packageManager = await select({
-    message: "Package manager",
-    choices: [
-      { name: "bun (recommended)", value: "bun" },
-      { name: "npm", value: "npm" },
-      { name: "pnpm", value: "pnpm" }
-    ]
-  });
-  const features = await checkbox({
-    message: "Select optional features",
-    choices: [
-      {
-        name: "Auth \u2014 AuthContext, useAuth hook, login/register routes",
-        value: "auth",
-        checked: false
-      }
-    ]
-  });
-  console.log();
-  const opts2 = {
-    projectName,
-    projectDir,
-    packageManager,
-    features
-  };
-  const scaffoldSpinner = ora("Cloning template\u2026").start();
-  try {
-    await scaffold(opts2);
-    scaffoldSpinner.succeed("Template cloned");
-  } catch (err) {
-    scaffoldSpinner.fail("Failed to clone template");
-    log.error(String(err));
-    process.exit(1);
-  }
-  if (!opts.skipInstall) {
-    const installSpinner = ora(`Installing dependencies with ${packageManager}\u2026`).start();
-    try {
-      await install(projectDir, packageManager);
-      installSpinner.succeed("Dependencies installed");
-    } catch {
-      installSpinner.fail(`Install failed`);
-      log.tip(`Run manually: cd ${projectName} && ${packageManager} install`);
+      projectName = projectNameInput;
     }
+    const projectDir = resolve(process.cwd(), projectName);
+    if (existsSync2(projectDir)) {
+      log.error(`Directory "${projectName}" already exists`);
+      process.exit(1);
+    }
+    const packageManager = await p.select({
+      message: "Package manager",
+      options: [
+        { label: "bun (recommended)", value: "bun" },
+        { label: "npm", value: "npm" },
+        { label: "pnpm", value: "pnpm" }
+      ]
+    });
+    if (p.isCancel(packageManager)) {
+      p.cancel("Operation cancelled");
+      process.exit(0);
+    }
+    const features = await p.multiselect({
+      message: "Select optional features",
+      options: [
+        {
+          label: "Auth \u2014 AuthContext, useAuth hook, login/register routes",
+          value: "auth"
+        }
+      ],
+      required: false
+    });
+    if (p.isCancel(features)) {
+      p.cancel("Operation cancelled");
+      process.exit(0);
+    }
+    console.log();
+    const opts2 = {
+      projectName,
+      projectDir,
+      packageManager,
+      features
+    };
+    const scaffoldSpinner = ora("Cloning template\u2026").start();
+    try {
+      await scaffold(opts2);
+      scaffoldSpinner.succeed("Template cloned");
+    } catch (err) {
+      scaffoldSpinner.fail("Failed to clone template");
+      log.error(String(err));
+      process.exit(1);
+    }
+    if (!opts.skipInstall) {
+      const installSpinner = ora(
+        `Installing dependencies with ${packageManager}\u2026`
+      ).start();
+      try {
+        await install(projectDir, packageManager);
+        installSpinner.succeed("Dependencies installed");
+      } catch {
+        installSpinner.fail(`Install failed`);
+        log.tip(
+          `Run manually: cd ${projectName} && ${packageManager} install`
+        );
+      }
+    }
+    console.log();
+    p.outro(chalk2.bold(chalk2.green(`\u2713 Created ${chalk2.cyan(projectName)}`)));
+    console.log();
+    log.tip(`cd ${projectName}`);
+    log.tip(`${packageManager} run dev`);
+    console.log();
   }
-  console.log();
-  log.success(chalk2.bold(`Created ${chalk2.cyan(projectName)}`));
-  console.log();
-  log.tip(`cd ${projectName}`);
-  log.tip(`${packageManager} run dev`);
-  console.log();
-});
+);
 program.parse();

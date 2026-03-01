@@ -12,8 +12,7 @@ export async function scaffold(opts: ScaffoldOptions): Promise<void> {
   const { projectName, projectDir, features } = opts;
 
   // Step 1: Clone full monorepo from GitHub via degit
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const degit = (await import("degit")).default as any;
+  const degit = (await import("degit")).default;
   const emitter = degit(TEMPLATE_REPO, { cache: false, force: true });
   await emitter.clone(projectDir);
 

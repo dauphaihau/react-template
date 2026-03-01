@@ -1,5 +1,4 @@
 import { QueryClient } from '@tanstack/react-query'
-import type { QueryClient as QueryClientType } from '@tanstack/query-core'
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -10,10 +9,9 @@ export const queryClient = new QueryClient({
   },
 })
 
-// This code is only for TypeScript
 declare global {
   interface Window {
-    __TANSTACK_QUERY_CLIENT__: QueryClientType
+    __TANSTACK_QUERY_CLIENT__: QueryClient
   }
 }
 
