@@ -20,7 +20,7 @@ function BlogPost() {
     )
   }
 
-  if (isError || !post) {
+  if (isError) {
     return (
       <main className="page-wrap px-4 pb-12 pt-16">
         <p className="text-[var(--sea-ink-soft)]">Post not found.</p>

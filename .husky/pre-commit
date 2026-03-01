@@ -1,0 +1,2 @@
+(cd packages/template && bun run typecheck)
+(cd packages/template && bun run lint)

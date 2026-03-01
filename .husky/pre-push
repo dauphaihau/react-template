@@ -1,2 +1,1 @@
-bun run --cwd packages/template typecheck
-bun run --cwd packages/template test
+(cd packages/template && bun run test)

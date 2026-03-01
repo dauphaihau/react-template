@@ -29,7 +29,7 @@ function BlogIndex() {
     )
   }
 
-  if (isError || !posts?.length) {
+  if (isError || !posts.length) {
     return (
       <main className="page-wrap px-4 pb-8 pt-14">
         <p className="text-[var(--sea-ink-soft)]">Failed to load posts.</p>
