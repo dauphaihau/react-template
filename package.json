@@ -9,6 +9,7 @@
     "cli:dev": "bun run --cwd packages/cli dev",
     "cli:link": "bun run --cwd packages/cli build && cd packages/cli && bun link",
     "cli:test": "bun packages/cli/bin/index.js",
+    "template:dev": "bun run --cwd packages/template dev",
     "prepare": "husky"
   },
   "devDependencies": {

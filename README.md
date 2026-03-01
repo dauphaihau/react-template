@@ -1,204 +1,101 @@
-Welcome to your new TanStack Start app! 
+# create-react-template
 
-# Getting Started
+A CLI scaffolding tool for a production-ready **TanStack Start + React 19** app with [Feature-Sliced Design](https://feature-sliced.design/) architecture.
 
-To run this application:
-
-```bash
-bun install
-bun --bun run dev
-```
-
-# Building For Production
-
-To build this application for production:
+## Quick Start
 
 ```bash
-bun --bun run build
+bunx create-react-template my-app
+# or
+npx create-react-template my-app
 ```
 
-## Testing
+The CLI will prompt you for:
+- **Package manager** — bun, npm, or pnpm
+- **Optional features** — Auth (AuthContext, `useAuth` hook, login/register routes)
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
+Then run your app:
 
 ```bash
-bun --bun run test
+cd my-app
+bun run dev
 ```
 
-## Styling
+## Template Stack
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+| Tool | Purpose |
+|------|---------|
+| [TanStack Start](https://tanstack.com/start) | Full-stack React framework (SSR/SSG) |
+| [TanStack Router](https://tanstack.com/router) | File-based routing in `src/routes/` |
+| [Tailwind CSS v4](https://tailwindcss.com/) | Utility-first styling |
+| [Vitest](https://vitest.dev/) | Unit & integration testing |
+| TypeScript | Strict mode enabled |
 
-### Removing Tailwind CSS
+## Architecture: Feature-Sliced Design
 
-If you prefer not to use Tailwind CSS:
+```
+src/
+  routes/       # Route entry points only — no business logic
+  widgets/      # Composed UI blocks (Header, Footer, Sidebar)
+  features/     # User interactions and use-case logic
+  entities/     # Business domain models and their UI
+  shared/
+    ui/         # Pure, reusable UI primitives
+    lib/        # Utilities and helpers
+    api/        # API clients and server functions
+```
 
-1. Remove the demo pages in `src/routes/demo/`
-2. Replace the Tailwind import in `src/styles.css` with your own styles
-3. Remove `tailwindcss()` from the plugins array in `vite.config.ts`
-4. Uninstall the packages: `bun install @tailwindcss/vite tailwindcss -D`
+Imports flow **downward only**: `routes → widgets → features → entities → shared`.
 
-## Linting & Formatting
-
-
-This project uses [eslint](https://eslint.org/) and [prettier](https://prettier.io/) for linting and formatting. Eslint is configured using [tanstack/eslint-config](https://tanstack.com/config/latest/docs/eslint). The following scripts are available:
+## Scripts (inside generated project)
 
 ```bash
-bun --bun run lint
-bun --bun run format
-bun --bun run check
+bun run dev       # Start development server
+bun run build     # Build for production
+bun run test      # Run tests with Vitest
+bun run lint      # Lint with ESLint
+bun run format    # Format with Prettier
 ```
 
+---
 
+## Monorepo (this repo)
 
-## Routing
-
-This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
+```
+react-template/
+  packages/
+    cli/          # The create-react-template CLI (published to npm)
+    template/     # The React app template source
+    features/     # Optional feature templates (auth, …)
+  content/        # Sample blog MDX posts
+  docs/
 ```
 
-Then anywhere in your JSX you can use it like so:
+### Working on the CLI
 
-```tsx
-<Link to="/about">About</Link>
+```bash
+# Build the CLI
+bun run cli:build
+
+# Watch mode during development
+bun run cli:dev
+
+# Link locally to test with bunx / npx
+bun run cli:link
+
+# Run against the local bin directly
+bun run cli:test
 ```
 
-This will create a link that will navigate to the `/about` route.
+### Adding a New Optional Feature
 
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
+1. Create `packages/features/<id>/` with:
+   - `files/` — new files to copy into the project
+   - `patches/` — full-file replacements for existing template files
+   - `deps.json` — additional dependencies to install
+2. Add the option to `packages/cli/src/index.ts`
+3. Add the type to `packages/cli/src/types.ts`
 
-### Using A Layout
+## License
 
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you render `{children}` in the `shellComponent`.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-
-export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'My App' },
-    ],
-  }),
-  shellComponent: ({ children }) => (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <header>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-          </nav>
-        </header>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  ),
-})
-```
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-## Server Functions
-
-TanStack Start provides server functions that allow you to write server-side code that seamlessly integrates with your client components.
-
-```tsx
-import { createServerFn } from '@tanstack/react-start'
-
-const getServerTime = createServerFn({
-  method: 'GET',
-}).handler(async () => {
-  return new Date().toISOString()
-})
-
-// Use in a component
-function MyComponent() {
-  const [time, setTime] = useState('')
-  
-  useEffect(() => {
-    getServerTime().then(setTime)
-  }, [])
-  
-  return <div>Server time: {time}</div>
-}
-```
-
-## API Routes
-
-You can create API routes by using the `server` property in your route definitions:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-import { json } from '@tanstack/react-start'
-
-export const Route = createFileRoute('/api/hello')({
-  server: {
-    handlers: {
-      GET: () => json({ message: 'Hello, World!' }),
-    },
-  },
-})
-```
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/people')({
-  loader: async () => {
-    const response = await fetch('https://swapi.dev/api/people')
-    return response.json()
-  },
-  component: PeopleComponent,
-})
-
-function PeopleComponent() {
-  const data = Route.useLoaderData()
-  return (
-    <ul>
-      {data.results.map((person) => (
-        <li key={person.name}>{person.name}</li>
-      ))}
-    </ul>
-  )
-}
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
-
-For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).
+MIT
