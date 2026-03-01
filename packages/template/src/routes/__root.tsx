@@ -10,7 +10,6 @@ import { RouteError, Toaster } from '#/shared/ui'
 import Header from '#/widgets/Header'
 import Footer from '#/widgets/Footer'
 
-import '#/shared/lib/env'
 import '../styles.css'
 
 // TanStack Router Error Component for route-level errors (uses shared RouteError from UI)
