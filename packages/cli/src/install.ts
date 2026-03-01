@@ -7,6 +7,10 @@ const INSTALL_COMMANDS: Record<PackageManager, [string, string[]]> = {
   pnpm: ['pnpm', ['install']],
 }
 
+export async function gitInit(projectDir: string): Promise<void> {
+  await execa('git', ['init'], { cwd: projectDir })
+}
+
 export async function install(
   projectDir: string,
   packageManager: PackageManager

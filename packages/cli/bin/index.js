@@ -120,6 +120,9 @@ var INSTALL_COMMANDS = {
   npm: ["npm", ["install"]],
   pnpm: ["pnpm", ["install"]]
 };
+async function gitInit(projectDir) {
+  await execa("git", ["init"], { cwd: projectDir });
+}
 async function install(projectDir, packageManager) {
   const [cmd, args] = INSTALL_COMMANDS[packageManager];
   await execa(cmd, args, {
@@ -210,6 +213,7 @@ program.name("create-react-template").description("Scaffold a TanStack Start + R
       log.error(String(err));
       process.exit(1);
     }
+    await gitInit(projectDir);
     if (!opts.skipInstall) {
       const installSpinner = ora(
         `Installing dependencies with ${packageManager}\u2026`
