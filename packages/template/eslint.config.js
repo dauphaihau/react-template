@@ -1,20 +1,19 @@
 //  @ts-check
 
-import { tanstackConfig } from '@tanstack/eslint-config'
+import dauphaihau from '@dauphaihau/eslint-config';
 
 export default [
-  ...tanstackConfig,
+  { ignores: ['.content-collections/**'] },
+  ...await dauphaihau({
+    typescript: true,
+    react: true,
+  }),
   {
     rules: {
-      'import/no-cycle': 'off',
-      'import/order': 'off',
-      'sort-imports': 'off',
-      '@typescript-eslint/array-type': 'off',
-      '@typescript-eslint/require-await': 'off',
-      'pnpm/json-enforce-catalog': 'off',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/naming-convention': 'off',
+      'check-file/filename-naming-convention': 'off',
+      'react-refresh/only-export-components': 'off',
     },
   },
-  {
-    ignores: ['eslint.config.js', 'prettier.config.js', '.content-collections/**'],
-  },
-]
+];

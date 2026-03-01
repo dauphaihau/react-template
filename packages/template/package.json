@@ -39,8 +39,6 @@
     "tsconfig.json",
     "tailwind.config.ts",
     "eslint.config.js",
-    "prettier.config.js",
-    ".prettierignore",
     "components.json",
     "content-collections.ts",
     "README.md"
@@ -56,8 +54,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint",
-    "format": "prettier --check .",
-    "check": "prettier --write . && eslint --fix",
+    "lint:fix": "eslint --fix",
     "prepare": "husky"
   },
   "dependencies": {
@@ -84,9 +81,9 @@
     "@content-collections/markdown": "^0.1.4",
     "@content-collections/mdx": "^0.2.2",
     "@content-collections/vite": "^0.2.8",
+    "@dauphaihau/eslint-config": "0.2.0",
     "@tailwindcss/typography": "^0.5.16",
     "@tanstack/devtools-vite": "^0.3.11",
-    "@tanstack/eslint-config": "^0.3.0",
     "@tanstack/router-plugin": "^1.132.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.2.0",
@@ -98,7 +95,6 @@
     "husky": "^9.1.7",
     "jsdom": "^27.0.0",
     "lint-staged": "^16.3.0",
-    "prettier": "^3.5.3",
     "remark-gfm": "^4.0.1",
     "typescript": "^5.7.2",
     "vite": "^7.1.7",
@@ -107,7 +103,6 @@
     "zod": "^4.3.5"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --fix",
-    "*.{ts,tsx,js,css,json,md}": "prettier --write"
+    "*.{ts,tsx,js}": "eslint --fix"
   }
 }

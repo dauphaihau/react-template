@@ -1,8 +1,8 @@
-import { Link, createFileRoute } from '@tanstack/react-router'
-import { toast } from 'sonner'
-import { Button } from '#/shared/ui'
+import { Link, createFileRoute } from '@tanstack/react-router';
+import { toast } from 'sonner';
+import { Button } from '#/shared/ui';
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute('/')({ component: App });
 
 function App() {
   return (
@@ -57,7 +57,7 @@ function App() {
           <article
             key={title}
             className="island-shell feature-card rise-in rounded-2xl p-5"
-            style={{ animationDelay: `${index * 90 + 80}ms` }}
+            style={{ animationDelay: `${(index * 90) + 80}ms` }}
           >
             <h2 className="mb-2 text-base font-semibold text-[var(--sea-ink)]">
               {title}
@@ -151,5 +151,5 @@ function App() {
         </ul>
       </section>
     </main>
-  )
+  );
 }
