@@ -1,2 +1,2 @@
 (cd packages/template && bun run typecheck)
-(cd packages/template && bun run lint)
+(cd packages/template && bunx lint-staged)
