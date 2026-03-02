@@ -1,6 +1,6 @@
 export type PackageManager = 'bun' | 'npm' | 'pnpm'
 
-export type FeatureId = 'auth'
+export type FeatureId = 'auth' | 'github-actions'
 
 export interface ScaffoldOptions {
   projectName: string

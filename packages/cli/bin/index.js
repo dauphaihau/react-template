@@ -189,6 +189,10 @@ program.name("create-react-template").description("Scaffold a TanStack Start + R
         {
           label: "Auth \u2014 AuthContext, useAuth hook, login/register routes",
           value: "auth"
+        },
+        {
+          label: "GitHub Actions \u2014 CI workflow (typecheck, lint, test, build)",
+          value: "github-actions"
         }
       ],
       required: false

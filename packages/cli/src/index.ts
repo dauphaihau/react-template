@@ -77,6 +77,11 @@ program
             label: "Auth — AuthContext, useAuth hook, login/register routes",
             value: "auth" as FeatureId,
           },
+          {
+            label:
+              "GitHub Actions — CI workflow (typecheck, lint, test, build)",
+            value: "github-actions" as FeatureId,
+          },
         ],
         required: false,
       })) as FeatureId[];
