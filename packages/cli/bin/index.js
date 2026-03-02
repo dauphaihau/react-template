@@ -121,7 +121,7 @@ var INSTALL_COMMANDS = {
   pnpm: ["pnpm", ["install"]]
 };
 async function gitInit(projectDir) {
-  await execa("git", ["init"], { cwd: projectDir });
+  await execa("git", ["init", "-b", "production"], { cwd: projectDir });
 }
 async function install(projectDir, packageManager) {
   const [cmd, args] = INSTALL_COMMANDS[packageManager];

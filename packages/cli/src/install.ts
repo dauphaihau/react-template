@@ -8,7 +8,7 @@ const INSTALL_COMMANDS: Record<PackageManager, [string, string[]]> = {
 }
 
 export async function gitInit(projectDir: string): Promise<void> {
-  await execa('git', ['init'], { cwd: projectDir })
+  await execa('git', ['init', '-b', 'production'], { cwd: projectDir })
 }
 
 export async function install(
