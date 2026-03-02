@@ -15,11 +15,9 @@ program
   .name("create-react-template")
   .description("Scaffold a TanStack Start + React 19 + FSD app")
   .argument("[project-name]", "Name of the new project")
-  .option("--skip-install", "Skip installing dependencies")
   .action(
     async (
       projectNameArg: string | undefined,
-      opts: { skipInstall?: boolean },
     ) => {
       p.intro(chalk.bold("create-react-template"));
 
@@ -91,6 +89,17 @@ program
         process.exit(0);
       }
 
+      // --- Install dependencies prompt ---
+      const shouldInstall = await p.confirm({
+        message: "Install dependencies?",
+        initialValue: false,
+      });
+
+      if (p.isCancel(shouldInstall)) {
+        p.cancel("Operation cancelled");
+        process.exit(0);
+      }
+
       console.log();
 
       const opts2: ScaffoldOptions = {
@@ -115,7 +124,7 @@ program
       await gitInit(projectDir);
 
       // --- Install ---
-      if (!opts.skipInstall) {
+      if (shouldInstall) {
         const installSpinner = ora(
           `Installing dependencies with ${packageManager}…`,
         ).start();
