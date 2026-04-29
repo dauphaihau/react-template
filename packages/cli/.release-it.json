@@ -1,0 +1,22 @@
+{
+  "$schema": "https://unpkg.com/release-it/schema/release-it.json",
+  "hooks": {
+    "before:init": [
+      "bun run typecheck",
+      "bun run build"
+    ]
+  },
+  "git": {
+    "commitMessage": "chore(cli): release ${version}",
+    "tagName": "cli-v${version}",
+    "tagMatch": "cli-v*",
+    "tagAnnotation": "Release cli v${version}",
+    "changelog": "git log --pretty=format:\"* %s (%h)\" ${from}...${to} -- ."
+  },
+  "npm": {
+    "publish": true
+  },
+  "github": {
+    "release": false
+  }
+}

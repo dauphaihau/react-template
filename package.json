@@ -9,6 +9,8 @@
     "cli:dev": "bun run --cwd packages/cli dev",
     "cli:link": "bun run --cwd packages/cli build && cd packages/cli && bun link",
     "cli:test": "bun packages/cli/bin/index.js",
+    "release:cli": "cd packages/cli && release-it",
+    "release:template": "cd packages/template && release-it",
     "template:dev": "bun run --cwd packages/template dev",
     "prepare": "husky"
   },
@@ -16,6 +18,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "release-it": "^20.0.1"
   }
 }
