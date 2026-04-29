@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router';
-import { useBlogPosts } from '#/shared/hooks/useBlogPosts';
+import { useBlogPosts } from '#/shared/hooks/use-blog-posts';
 
 const canonical = 'https://example.com/blog';
 const pageTitle = 'Blog | TanStack Start';

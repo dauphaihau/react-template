@@ -1,6 +1,6 @@
 export { ErrorBoundary } from './ErrorBoundary';
 export type { ErrorBoundaryProps } from './ErrorBoundary';
-export { useErrorHandler } from './useErrorHandler';
+export { useErrorHandler } from './use-error-handler';
 export { logError, formatError, isRecoverableError } from './logger';
 export {
   AppError,

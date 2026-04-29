@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useBlogPost } from '#/shared/hooks/useBlogPost';
+import { useBlogPost } from '#/shared/hooks/use-blog-post';
 
 export const Route = createFileRoute('/blog/$slug')({
   head: ({ params }) => ({
