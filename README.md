@@ -1,6 +1,6 @@
 # create-react-template
 
-A CLI scaffolding tool for a production-ready **TanStack Start + React 19** app with [Feature-Sliced Design](https://feature-sliced.design/) architecture.
+A CLI scaffolding tool for a production-ready **React 19 + Vite** app with [Feature-Sliced Design](https://feature-sliced.design/) architecture.
 
 ## What's Included
 
@@ -9,8 +9,10 @@ A CLI scaffolding tool for a production-ready **TanStack Start + React 19** app 
 - Error boundary with fallback UI — catches runtime errors gracefully
 - Type-safe env vars — Zod-validated `env` object, fails fast on missing vars
 - Pre-commit: typecheck + lint — pre-push: tests (Husky + lint-staged)
+- Linting and formatting — ESLint with Stylistic for consistent code style
 - Theme toggle — light/dark mode via CSS variables
-- File-based routing — TanStack Router with nested layouts
+- File-based routing — TanStack Router with end-to-end type safety
+- TanStack Query — data fetching, caching, and server state
 - UI primitives — shadcn/ui components + Tailwind CSS v4
 - FSD architecture — enforced layer boundaries (routes → widgets → features → entities → shared)
 
@@ -41,7 +43,6 @@ bun run dev
 
 | Tool | Purpose |
 |------|---------|
-| [TanStack Start](https://tanstack.com/start) | Full-stack React framework (SSR/SSG) |
 | [TanStack Router](https://tanstack.com/router) | File-based routing in `src/routes/` |
 | [Tailwind CSS v4](https://tailwindcss.com/) | Utility-first styling |
 | [Vitest](https://vitest.dev/) | Unit & integration testing |
