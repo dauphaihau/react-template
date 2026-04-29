@@ -8,6 +8,9 @@
   },
   "git": {
     "commitMessage": "chore(template): release ${version}",
+    "commitArgs": [
+      "--no-verify"
+    ],
     "tagName": "template-v${version}",
     "tagMatch": "template-v*",
     "tagAnnotation": "Release template v${version}",
