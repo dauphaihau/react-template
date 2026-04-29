@@ -22,14 +22,14 @@ This document provides practical, copy-paste examples for implementing error bou
 ```tsx
 // src/features/user-profile/UserProfile.container.tsx
 import { ErrorBoundary } from '#/shared/lib/error-boundary'
-import { ErrorDisplayContainer } from '#/shared/ui/error-display'
+import { ErrorDisplay } from '#/shared/ui'
 import { UserProfile } from './UserProfile'
 
 export function UserProfileContainer({ userId }: { userId: string }) {
   return (
     <ErrorBoundary
       fallback={(error, reset) => (
-        <ErrorDisplayContainer error={error} resetError={reset} />
+        <ErrorDisplay message={error.message} onRetry={reset} />
       )}
     >
       <UserProfile userId={userId} />
@@ -73,7 +73,7 @@ export function SidebarContainer() {
 ```tsx
 // src/routes/users.$userId.tsx
 import { createFileRoute, ErrorComponentProps } from '@tanstack/react-router'
-import { RouteError } from '#/shared/ui/error-display'
+import { RouteError } from '#/shared/ui'
 
 function UserPageError({ error }: ErrorComponentProps) {
   return <RouteError error={error} showDetails={import.meta.env.DEV} />
@@ -645,7 +645,7 @@ function WidgetError({ name }: { name: string }) {
 import { createFileRoute, ErrorComponentProps } from '@tanstack/react-router'
 import { ErrorBoundary } from '#/shared/lib/error-boundary'
 import { NotFoundError } from '#/shared/lib/error-boundary'
-import { RouteError } from '#/shared/ui/error-display'
+import { RouteError } from '#/shared/ui'
 
 // Route-level error component
 function BlogPostError({ error }: ErrorComponentProps) {

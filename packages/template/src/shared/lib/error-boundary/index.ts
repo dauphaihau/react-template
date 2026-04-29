@@ -1,5 +1,5 @@
-export { ErrorBoundary } from './ErrorBoundary';
-export type { ErrorBoundaryProps } from './ErrorBoundary';
+export { ErrorBoundary } from './error-boundary';
+export type { ErrorBoundaryProps } from './error-boundary';
 export { useErrorHandler } from './use-error-handler';
 export { logError, formatError, isRecoverableError } from './logger';
 export {

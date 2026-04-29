@@ -1,4 +1,4 @@
-import { ErrorDisplay } from './ErrorDisplay';
+import { ErrorDisplay } from './error-display';
 
 interface RouteErrorProps {
   error: Error

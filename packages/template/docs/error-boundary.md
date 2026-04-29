@@ -11,15 +11,14 @@ The error boundary system is organized in the `shared` layer:
 ```
 src/shared/
   lib/error-boundary/
-    ErrorBoundary.tsx      # React Error Boundary component
+    error-boundary.tsx     # React Error Boundary component
     error-types.ts         # Custom error classes and utilities
     logger.ts              # Error logging utilities
-    useErrorHandler.ts     # Hook for programmatic error throwing
+    use-error-handler.ts   # Hook for programmatic error throwing
     index.ts               # Barrel exports
-  ui/error-display/
-    ErrorDisplay.tsx       # Presentational error UI
-    ErrorDisplay.container.tsx  # Container with error handling logic
-    RouteError.tsx         # Route-specific error component
+  ui/app/error-display/
+    error-display.tsx      # Presentational error UI
+    route-error.tsx        # Route-specific error component
     index.ts               # Barrel exports
 ```
 
@@ -79,13 +78,13 @@ Wrap specific parts of your app with custom error boundaries:
 
 ```tsx
 import { ErrorBoundary } from '#/shared/lib/error-boundary'
-import { ErrorDisplayContainer } from '#/shared/ui/error-display'
+import { ErrorDisplay } from '#/shared/ui'
 
 function MyFeature() {
   return (
     <ErrorBoundary
       fallback={(error, reset) => (
-        <ErrorDisplayContainer error={error} resetError={reset} />
+        <ErrorDisplay message={error.message} onRetry={reset} />
       )}
       onError={(error, errorInfo) => {
         // Custom error handling
@@ -231,12 +230,12 @@ logError(error: unknown, context?: Record<string, unknown>): void
 When creating error UI, split logic from presentation:
 
 ```tsx
-// ErrorDisplay.tsx - Presentational
+// error-display.tsx - Presentational
 export function ErrorDisplay({ message, onRetry }: ErrorDisplayProps) {
   return <div>{/* Pure UI */}</div>
 }
 
-// ErrorDisplay.container.tsx - Container
+// error-display-container.tsx - Container
 export function ErrorDisplayContainer({ error }: { error: Error }) {
   const handleRetry = () => {
     // Logic here

@@ -39,6 +39,22 @@ export default [
       '@typescript-eslint/naming-convention': 'off',
     },
   },
+  // Project modules use lowercase kebab-case filenames; React symbols stay PascalCase.
+  {
+    files: [
+      'src/features/**/*.{ts,tsx}',
+      'src/widgets/**/*.{ts,tsx}',
+      'src/shared/lib/**/*.{ts,tsx}',
+    ],
+    rules: {
+      'check-file/filename-naming-convention': [
+        'error',
+        {
+          '**/*.{ts,tsx}': 'KEBAB_CASE',
+        },
+      ],
+    },
+  },
   // shared/ui uses kebab-case filenames (button.tsx, input.tsx, etc.)
   {
     files: ['src/shared/ui/**/*.{ts,tsx}'],

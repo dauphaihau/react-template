@@ -7,8 +7,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { queryClient } from '#/shared/lib/query-client';
 import { ErrorBoundary } from '#/shared/lib/error-boundary';
 import { RouteError, Toaster } from '#/shared/ui';
-import Header from '#/widgets/Header';
-import Footer from '#/widgets/Footer';
+import Header from '#/widgets/header';
+import Footer from '#/widgets/footer';
 
 import '../styles.css';
 

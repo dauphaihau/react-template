@@ -14,9 +14,17 @@ src/
 │   ├── hooks/     # Shared React hooks
 │   ├── lib/       # Third-party configs and utilities
 │   ├── queries/   # React Query queries and mutations
-│   └── ui/        # Shared primitive UI components
+│   └── ui/        # Shared UI components
+│       ├── app/        # App-aware shared UI
+│       └── primitives/ # Generic primitive UI components
 └── domain/        # Business rules and validators
 ```
+
+## Naming Conventions
+
+- File and module paths use lowercase kebab-case: `theme-toggle.tsx`, `error-boundary.tsx`
+- React component symbols use PascalCase: `ThemeToggle`, `ErrorBoundary`
+- Directory names use lowercase kebab-case: `error-display/`, `game-settings/`
 
 ## Layers
 
@@ -56,8 +64,8 @@ Composite UI components that are reused across multiple routes but contain more 
 
 ```
 widgets/
-├── Header.tsx
-└── Footer.tsx
+├── header.tsx
+└── footer.tsx
 ```
 
 ### `shared/`
@@ -66,11 +74,14 @@ Infrastructure and utilities used across 2+ features or routes.
 
 | Folder | Purpose |
 |---|---|
-| `ui/` | Primitive UI components (shadcn/ui, icons, MDX renderers) |
+| `ui/primitives/` | Generic, framework-agnostic UI components (shadcn/ui, icons) — no app knowledge |
+| `ui/app/` | App-aware shared UI — knows about routes, errors, or app context |
 | `lib/` | App config and third-party setup (site metadata, query client) |
 | `api/` | API clients and DTOs, organized by domain |
 | `queries/` | React Query queries and mutations (server state source of truth) |
 | `hooks/` | Cross-feature React hooks |
+
+**`shared/ui/app/` vs `widgets/`**: If a shared component carries data/state logic (hooks, queries, context) → `widgets/`. If it is app-aware UI with no hooks or queries of its own → `shared/ui/app/`.
 
 Import shared UI via the barrel:
 
@@ -115,5 +126,5 @@ The `#/` alias (configured in `package.json` `imports` and `tsconfig.json`) maps
 ```ts
 import { cn } from '#/shared/lib/utils'
 import { ThemeToggle } from '#/features/theme'
-import Header from '#/widgets/Header'
+import Header from '#/widgets/header'
 ```
