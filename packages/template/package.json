@@ -1,6 +1,6 @@
 {
   "name": "@dauphaihau/react-template",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A modern TanStack Start starter template with React, TanStack Router, React Query, and Tailwind CSS. Built with TypeScript, Feature-Sliced Design, and best practices.",
   "license": "MIT",
   "author": "dauphaihau",
