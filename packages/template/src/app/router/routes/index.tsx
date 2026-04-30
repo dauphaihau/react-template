@@ -141,8 +141,8 @@ function App() {
             product narrative.
           </li>
           <li>
-            Update <code>src/widgets/header.tsx</code> and{' '}
-            <code>src/widgets/footer.tsx</code> for brand links.
+            Update <code>src/shared/ui/widgets/header.tsx</code> and{' '}
+            <code>src/shared/ui/widgets/footer.tsx</code> for brand links.
           </li>
           <li>
             Add routes in <code>src/routes</code> and tweak visual tokens in{' '}

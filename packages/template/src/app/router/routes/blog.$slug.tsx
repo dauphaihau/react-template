@@ -31,15 +31,15 @@ function BlogPost() {
   return (
     <main className="page-wrap px-4 pb-12 pt-16">
       <article className="island-shell rounded-2xl p-6 sm:p-8">
-        {post.cover_image ?
-          (
+        {post.cover_image
+          ? (
             <img
               src={post.cover_image}
               alt=""
               className="mb-6 h-64 w-full rounded-2xl object-cover"
             />
-          ) :
-          null}
+          )
+          : null}
         <p className="island-kicker mb-2">Post</p>
         <h1 className="display-title mb-3 text-4xl font-bold text-[var(--sea-ink)] sm:text-5xl">
           {post.title}

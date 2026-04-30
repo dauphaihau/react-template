@@ -13,14 +13,14 @@ export default [
   },
   // Entry-point files that are not React components
   {
-    files: ['src/main.tsx', 'src/router.tsx'],
+    files: ['src/app/index.tsx', 'src/app/router/index.ts'],
     rules: {
       'check-file/filename-naming-convention': 'off',
     },
   },
   // TanStack Router file-based routing: lowercase, dots, $params, __root, hyphens
   {
-    files: ['src/routes/**/*.{tsx,ts}'],
+    files: ['src/app/router/routes/**/*.{tsx,ts}'],
     rules: {
       'check-file/filename-naming-convention': 'off',
     },
@@ -42,8 +42,7 @@ export default [
   // Project modules use lowercase kebab-case filenames; React symbols stay PascalCase.
   {
     files: [
-      'src/features/**/*.{ts,tsx}',
-      'src/widgets/**/*.{ts,tsx}',
+      'src/modules/**/*.{ts,tsx}',
       'src/shared/lib/**/*.{ts,tsx}',
     ],
     rules: {

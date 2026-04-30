@@ -17,7 +17,11 @@ const config = defineConfig({
     ...(isTest ? [] : [contentCollections()]),
     tsconfigPaths({ projects: ['./tsconfig.json'] }),
     tailwindcss(),
-    ...(isTest ? [] : [tanstackRouter({ target: 'react', autoCodeSplitting: true })]),
+    ...(isTest
+      ? []
+      : [tanstackRouter({
+        target: 'react', autoCodeSplitting: true, routesDirectory: './src/app/router/routes', generatedRouteTree: './src/app/router/routeTree.gen.ts', 
+      })]),
     viteReact(),
   ],
   test: {

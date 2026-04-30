@@ -7,10 +7,10 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { queryClient } from '#/shared/lib/query-client';
 import { ErrorBoundary } from '#/shared/lib/error-boundary';
 import { RouteError, Toaster } from '#/shared/ui';
-import Header from '#/widgets/header';
-import Footer from '#/widgets/footer';
+import Header from '#/shared/ui/widgets/header';
+import Footer from '#/shared/ui/widgets/footer';
 
-import '../styles.css';
+import '../../styles/styles.css';
 
 // TanStack Router Error Component for route-level errors (uses shared RouteError from UI)
 function RouterErrorComponent({ error, reset }: ErrorComponentProps) {

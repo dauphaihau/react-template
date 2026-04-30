@@ -1,6 +1,6 @@
 # @dauphaihau/react-template
 
-A TanStack Start + React 19 starter template with TypeScript, TanStack Router, TanStack Query, Tailwind CSS, and Feature-Sliced Design conventions.
+A TanStack Start + React 19 starter template with TypeScript, TanStack Router, TanStack Query, Tailwind CSS, and a module-based folder structure.
 
 This package is the template source used by the `create-react-template` CLI.
 
@@ -17,7 +17,7 @@ This package is the template source used by the `create-react-template` CLI.
 - Error boundary with fallback UI
 - Zod-validated environment variables
 - Theme toggle with light and dark modes
-- Feature-Sliced Design folder structure
+- Module-based folder structure
 
 ## Create a Project
 
@@ -44,20 +44,25 @@ bun run dev
 
 ```txt
 src/
-  routes/       # Route entry points
-  widgets/      # Composed UI blocks
-  features/     # User interactions and use-case logic
-  entities/     # Business domain models and UI
+  app/
+    index.tsx       # Entry point
+    router/         # Router factory, generated route tree, and route files
+      routes/       # File-based route components
+    styles/         # Global styles
+  modules/          # Business modules
   shared/
-    ui/         # Reusable UI primitives
-    lib/        # Utilities and helpers
-    api/        # API clients and server functions
+    ui/
+      widgets/      # Composed UI blocks (Header, Footer)
+      app/          # App-aware shared UI
+      primitives/   # Generic UI primitives
+    lib/            # Utilities and helpers
+    api/            # API clients and server functions
 ```
 
 Imports flow downward:
 
 ```txt
-routes -> widgets -> features -> entities -> shared
+app -> modules -> shared
 ```
 
 ## Scripts

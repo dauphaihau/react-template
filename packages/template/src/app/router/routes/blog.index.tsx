@@ -50,15 +50,15 @@ function BlogIndex() {
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <article className="island-shell rise-in rounded-2xl p-5 sm:p-6 lg:col-span-2">
-          {featured.cover_image ?
-            (
+          {featured.cover_image
+            ? (
               <img
                 src={featured.cover_image}
                 alt=""
                 className="mb-4 h-44 w-full rounded-xl object-cover xl:h-60"
               />
-            ) :
-            null}
+            )
+            : null}
           <h2 className="m-0 text-2xl font-semibold text-[var(--sea-ink)]">
             <Link
               to="/blog/$slug"
@@ -82,15 +82,15 @@ function BlogIndex() {
             className="island-shell rise-in rounded-2xl p-5 sm:last:col-span-2 lg:last:col-span-1"
             style={{ animationDelay: `${(index * 80) + 120}ms` }}
           >
-            {post.cover_image ?
-              (
+            {post.cover_image
+              ? (
                 <img
                   src={post.cover_image}
                   alt=""
                   className="mb-4 h-44 w-full rounded-xl object-cover"
                 />
-              ) :
-              null}
+              )
+              : null}
             <h2 className="m-0 text-2xl font-semibold text-[var(--sea-ink)]">
               <Link
                 to="/blog/$slug"
