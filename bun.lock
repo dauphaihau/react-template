@@ -14,7 +14,7 @@
     },
     "packages/cli": {
       "name": "@dauphaihau/create-react-template",
-      "version": "1.0.1",
+      "version": "1.1.1",
       "bin": {
         "create-react-template": "bin/index.js",
       },
@@ -37,7 +37,7 @@
     },
     "packages/template": {
       "name": "@dauphaihau/react-template",
-      "version": "1.0.0",
+      "version": "1.1.1",
       "dependencies": {
         "@base-ui/react": "^1.2.0",
         "@tailwindcss/vite": "^4.1.18",
@@ -62,7 +62,7 @@
         "@content-collections/markdown": "^0.1.4",
         "@content-collections/mdx": "^0.2.2",
         "@content-collections/vite": "^0.2.8",
-        "@dauphaihau/eslint-config": "0.2.0",
+        "@dauphaihau/eslint-config": "0.3.1",
         "@tailwindcss/typography": "^0.5.16",
         "@tanstack/devtools-vite": "^0.3.11",
         "@tanstack/router-plugin": "^1.132.0",
@@ -170,7 +170,7 @@
 
     "@dauphaihau/create-react-template": ["@dauphaihau/create-react-template@workspace:packages/cli"],
 
-    "@dauphaihau/eslint-config": ["@dauphaihau/eslint-config@0.2.0", "", { "dependencies": { "@eslint/js": "^10.0.0", "@stylistic/eslint-plugin": "^5.9.0", "eslint-plugin-check-file": "^3.3.1", "globals": "^16.5.0", "typescript-eslint": "^8.56.1" }, "peerDependencies": { "eslint": "^9.0.0 || ^10.0.0" } }, "sha512-0VzgWvwDNR7Qk6NwwO95Wb0VyiqhxdyCDfAkPAhWDHqWCSm01f/BIn6HaMUSuN/1fIkMXpgZwoEImCq/ohIEjg=="],
+    "@dauphaihau/eslint-config": ["@dauphaihau/eslint-config@0.3.1", "", { "dependencies": { "@eslint/js": "^10.0.0", "@stylistic/eslint-plugin": "^5.9.0", "eslint-plugin-check-file": "^3.3.1", "globals": "^16.5.0", "typescript-eslint": "^8.56.1" }, "peerDependencies": { "eslint": "^9.0.0 || ^10.0.0", "eslint-plugin-tailwindcss": ">=3.0.0" }, "optionalPeers": ["eslint-plugin-tailwindcss"] }, "sha512-MVUj5pfV7G66K/QvKu7BZD4+1MyulxGNKWVFYeCmX5dMkyF870SaoSXE9Ut5sgv18A+PlQfk2WpfK4lnKqozFA=="],
 
     "@dauphaihau/react-template": ["@dauphaihau/react-template@workspace:packages/template"],
 

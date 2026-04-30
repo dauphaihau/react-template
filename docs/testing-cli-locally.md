@@ -47,12 +47,27 @@ cd packages/cli && bun run dev
 bun packages/cli/bin/index.js my-app
 ```
 
+## Testing local template changes
+
+By default the CLI pulls the template from GitHub via degit, so local changes to
+`packages/template/` are not reflected until pushed.
+
+Set `LOCAL_TEMPLATE=1` to copy from `packages/template/` directly instead — no push required.
+
+**Option A (native, run from anywhere)** — requires `bun link` from step above:
+
+```bash
+LOCAL_TEMPLATE=1 bunx create-react-template my-app
+```
+
+**Option B (bin directly)** — run from the repo root:
+
+```bash
+LOCAL_TEMPLATE=1 bun packages/cli/bin/index.js /tmp/my-app
+```
+
 ## Tips
 
-- Run tests in a temp directory to avoid cluttering the repo:
-  ```bash
-  mkdir -p /tmp/cli-test && cd /tmp/cli-test
-  bun /path/to/packages/cli/bin/index.js my-app
-  ```
+- All `bun packages/cli/bin/index.js` commands must be run from the **repo root**.
 - Always rebuild (`bun run build`) before testing Option A or B after source changes.
 - Use Option C when iterating on CLI source to skip manual rebuilds.

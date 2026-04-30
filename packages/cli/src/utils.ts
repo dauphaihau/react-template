@@ -4,6 +4,9 @@ import { fileURLToPath } from 'node:url'
 // Resolves to the root of the CLI package (packages/cli/)
 export const PKG_ROOT = join(fileURLToPath(import.meta.url), '..', '..')
 
+// Resolves to packages/template/ — used when LOCAL_TEMPLATE=1
+export const LOCAL_TEMPLATE_DIR = join(PKG_ROOT, '..', 'template')
+
 export function featureDir(featureId: string): string {
   return join(PKG_ROOT, '..', 'features', featureId)
 }

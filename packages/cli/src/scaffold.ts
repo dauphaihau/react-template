@@ -2,7 +2,7 @@ import fs from "fs-extra";
 import { join } from "node:path";
 import { existsSync } from "node:fs";
 import { readdir } from "node:fs/promises";
-import { deepMerge, featureDir } from "./utils.js";
+import { deepMerge, featureDir, LOCAL_TEMPLATE_DIR } from "./utils.js";
 import type { ScaffoldOptions, FeatureId, FeatureDeps } from "./types.js";
 
 // Update this to your GitHub repo before publishing
@@ -11,18 +11,22 @@ const TEMPLATE_REPO = "dauphaihau/react-template";
 export async function scaffold(opts: ScaffoldOptions): Promise<void> {
   const { projectName, projectDir, features } = opts;
 
-  // Step 1: Clone full monorepo from GitHub via degit
-  const degit = (await import("degit")).default;
-  const emitter = degit(TEMPLATE_REPO, { cache: false, force: true });
-  await emitter.clone(projectDir);
+  // Step 1: Populate project directory from template source
+  if (process.env.LOCAL_TEMPLATE) {
+    // Dev mode: copy directly from local packages/template/
+    await fs.copy(LOCAL_TEMPLATE_DIR, projectDir, { overwrite: true });
+  } else {
+    // Production: clone full monorepo from GitHub, then flatten packages/template/
+    const degit = (await import("degit")).default;
+    const emitter = degit(TEMPLATE_REPO, { cache: false, force: true });
+    await emitter.clone(projectDir);
 
-  // Flatten packages/template/ to project root (template source is now in packages/template/)
-  const templatePkgDir = join(projectDir, "packages", "template");
-  await fs.copy(templatePkgDir, projectDir, { overwrite: true });
+    const templatePkgDir = join(projectDir, "packages", "template");
+    await fs.copy(templatePkgDir, projectDir, { overwrite: true });
 
-  // Remove monorepo-only directories
-  await fs.remove(join(projectDir, "packages"));
-  await fs.remove(join(projectDir, "docs"));
+    await fs.remove(join(projectDir, "packages"));
+    await fs.remove(join(projectDir, "docs"));
+  }
 
   // Fix content-collections.ts path: packages/template/ uses ../../content/blog,
   // but in the scaffolded project content-collections.ts is at root alongside content/

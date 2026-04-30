@@ -18,6 +18,7 @@ import { readdir } from "fs/promises";
 import { join } from "path";
 import { fileURLToPath } from "url";
 var PKG_ROOT = join(fileURLToPath(import.meta.url), "..", "..");
+var LOCAL_TEMPLATE_DIR = join(PKG_ROOT, "..", "template");
 function featureDir(featureId) {
   return join(PKG_ROOT, "..", "features", featureId);
 }
@@ -42,13 +43,17 @@ function deepMerge(base, override) {
 var TEMPLATE_REPO = "dauphaihau/react-template";
 async function scaffold(opts) {
   const { projectName, projectDir, features } = opts;
-  const degit = (await import("degit")).default;
-  const emitter = degit(TEMPLATE_REPO, { cache: false, force: true });
-  await emitter.clone(projectDir);
-  const templatePkgDir = join2(projectDir, "packages", "template");
-  await fs.copy(templatePkgDir, projectDir, { overwrite: true });
-  await fs.remove(join2(projectDir, "packages"));
-  await fs.remove(join2(projectDir, "docs"));
+  if (process.env.LOCAL_TEMPLATE) {
+    await fs.copy(LOCAL_TEMPLATE_DIR, projectDir, { overwrite: true });
+  } else {
+    const degit = (await import("degit")).default;
+    const emitter = degit(TEMPLATE_REPO, { cache: false, force: true });
+    await emitter.clone(projectDir);
+    const templatePkgDir = join2(projectDir, "packages", "template");
+    await fs.copy(templatePkgDir, projectDir, { overwrite: true });
+    await fs.remove(join2(projectDir, "packages"));
+    await fs.remove(join2(projectDir, "docs"));
+  }
   const ccPath = join2(projectDir, "content-collections.ts");
   if (existsSync(ccPath)) {
     const cc = await fs.readFile(ccPath, "utf8");
