@@ -23,11 +23,11 @@ const blog = defineCollection({
       slug: document._meta.path,
       pubDate: new Date(document.pubDate).toISOString(),
       html: isMdx ? null : await compileMarkdown(context, document),
-      mdx: isMdx ?
-        await compileMDX(context, document, {
+      mdx: isMdx
+        ? await compileMDX(context, document, {
           remarkPlugins: [remarkGfm],
-        }) :
-        null,
+        })
+        : null,
     };
   },
 });

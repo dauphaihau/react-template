@@ -19,7 +19,7 @@ describe('cn', () => {
   });
 
   it('handles conditional classes via object form', () => {
-    expect(cn({ foo: true, bar: false, baz: true })).toBe('foo baz');
+    expect(cn({ active: true, hidden: false, extra: true })).toBe('active extra');
   });
 
   it('handles mixed inputs including arrays', () => {

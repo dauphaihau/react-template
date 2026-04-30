@@ -43,15 +43,15 @@ export function formatError(error: Error, errorInfo?: ErrorInfo): ErrorLog {
 export function logError(error: Error | unknown, errorInfo?: ErrorInfo): void {
   const isBrowser =
     typeof window !== 'undefined' && typeof navigator !== 'undefined';
-  const errorLog: ErrorLog = isError(error) ?
-    formatError(error, errorInfo) :
-    (() => {
-      const s = serializeError(error);
+  const errorLog: ErrorLog = isError(error)
+    ? formatError(error, errorInfo)
+    : (() => {
+      const serialized = serializeError(error);
       return {
-        message: s.message,
-        stack: s.stack,
+        message: serialized.message,
+        stack: serialized.stack,
         componentStack: errorInfo?.componentStack,
-        timestamp: s.timestamp,
+        timestamp: serialized.timestamp,
         userAgent: isBrowser ? navigator.userAgent : '',
         url: isBrowser ? window.location.href : '',
       };

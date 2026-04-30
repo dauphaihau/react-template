@@ -11,13 +11,6 @@ export default [
       'react-refresh/only-export-components': 'off',
     },
   },
-  // Entry-point files that are not React components
-  {
-    files: ['src/app/index.tsx', 'src/app/router/index.ts'],
-    rules: {
-      'check-file/filename-naming-convention': 'off',
-    },
-  },
   // TanStack Router file-based routing: lowercase, dots, $params, __root, hyphens
   {
     files: ['src/app/router/routes/**/*.{tsx,ts}'],
@@ -57,6 +50,13 @@ export default [
   // shared/ui uses kebab-case filenames (button.tsx, input.tsx, etc.)
   {
     files: ['src/shared/ui/**/*.{ts,tsx}'],
+    rules: {
+      'check-file/filename-naming-convention': 'off',
+    },
+  },
+  // Test files use *.test.ts / *.spec.ts convention — exempt from KEBAB_CASE check.
+  {
+    files: ['**/*.{test,spec}.{ts,tsx}'],
     rules: {
       'check-file/filename-naming-convention': 'off',
     },

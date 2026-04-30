@@ -103,7 +103,7 @@ export class ErrorBoundary extends Component<
   }
 }
 
-function areKeysEqual(a: Array<unknown>, b: Array<unknown>): boolean {
-  if (a.length !== b.length) return false;
-  return a.every((item, index) => Object.is(item, b[index]));
+function areKeysEqual(prev: Array<unknown>, next: Array<unknown>): boolean {
+  if (prev.length !== next.length) return false;
+  return prev.every((item, index) => Object.is(item, next[index]));
 }

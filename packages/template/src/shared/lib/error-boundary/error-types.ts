@@ -136,9 +136,9 @@ export function isRetryableError(error: unknown): boolean {
   if (isError(error)) {
     const message = error.message.toLowerCase();
     return (
-      message.includes('network') ||
-      message.includes('timeout') ||
-      message.includes('fetch')
+      message.includes('network')
+      || message.includes('timeout')
+      || message.includes('fetch')
     );
   }
 
