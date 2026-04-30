@@ -61,9 +61,9 @@ export default function ThemeToggle() {
   }
 
   const label =
-    mode === 'auto' ?
-      'Theme mode: auto (system). Click to switch to light mode.' :
-      `Theme mode: ${mode}. Click to switch mode.`;
+    mode === 'auto'
+      ? 'Theme mode: auto (system). Click to switch to light mode.'
+      : `Theme mode: ${mode}. Click to switch mode.`;
 
   return (
     <button
