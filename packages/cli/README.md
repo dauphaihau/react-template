@@ -1,6 +1,8 @@
 # create-react-template
 
-Scaffold a TanStack Start + React 19 application with TypeScript, TanStack Router, TanStack Query, Tailwind CSS, and Feature-Sliced Design conventions.
+CLI package for `create-react-template`, used to scaffold a React application from the `@dauphaihau/react-template` template.
+
+This package is published as `@dauphaihau/create-react-template` and exposes the `create-react-template` command.
 
 ## Quick Start
 
@@ -24,17 +26,9 @@ The CLI prompts for:
 
 ## Generated Project
 
-The generated app includes:
+For the generated app stack and project structure, see the template README:
 
-- React 19
-- TanStack Router
-- TanStack Query
-- Tailwind CSS v4
-- TypeScript
-- Vitest
-- ESLint
-- Husky and lint-staged
-- Feature-Sliced Design structure
+https://github.com/dauphaihau/react-template/tree/main/packages/template
 
 ## Usage
 
