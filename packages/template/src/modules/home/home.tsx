@@ -2,7 +2,7 @@ import { Footer } from './components/footer';
 import { Main } from './components/main';
 import { Nav } from './components/nav';
 
-export function HomePage() {
+export function Home() {
   return (
     <div className="flex h-screen w-full flex-col overflow-hidden">
       <Nav />
