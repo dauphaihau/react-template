@@ -1,4 +1,4 @@
-import { ThemeToggle } from '#/modules/theme';
+import { ThemeToggle } from '#/shared/ui/app';
 
 export function Footer() {
   return (
