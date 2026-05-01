@@ -3,10 +3,10 @@ import {
   Component,
   FileCode2,
   FlaskConical,
+  ListChecks,
   Navigation,
   Package,
   RefreshCcw,
-  ShieldCheck,
   Wind,
   Zap
 } from 'lucide-react';
@@ -26,11 +26,10 @@ export const QUERY_STATES = [
   { name: 'error', color: '#ef4444' },
 ] as const;
 
-export const STACK_ROWS = [
-  { name: 'Vite', role: 'build', badge: 'SPA' },
-  { name: 'TanStack Router', role: 'routing', badge: 'typed' },
-  { name: 'TanStack Query', role: 'data', badge: 'cache' },
-  { name: 'TypeScript', role: 'types', badge: 'strict' },
+export const ARCH_LAYERS = [
+  { layer: 'app/', role: 'bootstrap', badge: 'entry' },
+  { layer: 'modules/', role: 'business', badge: 'domain' },
+  { layer: 'shared/', role: 'cross-cutting', badge: 'reusable' },
 ] as const;
 
 export const TECH_COLS = 5;
@@ -72,10 +71,10 @@ export const techStack: {
     icon: Wind,
   },
   {
-    name: 'Zod',
-    desc: 'Validation',
-    href: 'https://zod.dev',
-    icon: ShieldCheck,
+    name: 'Stylistic',
+    desc: 'Lint & Style',
+    href: 'https://eslint.style',
+    icon: ListChecks,
   },
   {
     name: 'Vitest',
