@@ -9,122 +9,208 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TestErrorRouteImport } from './routes/test-error'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as BlogIndexRouteImport } from './routes/blog.index'
-import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as MainRouteImport } from './routes/_main'
+import { Route as LandingRouteImport } from './routes/_landing'
+import { Route as LandingIndexRouteImport } from './routes/_landing.index'
+import { Route as MainTestErrorRouteImport } from './routes/_main.test-error'
+import { Route as MainAboutRouteImport } from './routes/_main.about'
+import { Route as LandingGettingStartedRouteImport } from './routes/_landing.getting-started'
+import { Route as MainBlogIndexRouteImport } from './routes/_main.blog.index'
+import { Route as MainBlogSlugRouteImport } from './routes/_main.blog.$slug'
 
-const TestErrorRoute = TestErrorRouteImport.update({
-  id: '/test-error',
-  path: '/test-error',
+const MainRoute = MainRouteImport.update({
+  id: '/_main',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const LandingRoute = LandingRouteImport.update({
+  id: '/_landing',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const LandingIndexRoute = LandingIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => LandingRoute,
 } as any)
-const BlogIndexRoute = BlogIndexRouteImport.update({
+const MainTestErrorRoute = MainTestErrorRouteImport.update({
+  id: '/test-error',
+  path: '/test-error',
+  getParentRoute: () => MainRoute,
+} as any)
+const MainAboutRoute = MainAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => MainRoute,
+} as any)
+const LandingGettingStartedRoute = LandingGettingStartedRouteImport.update({
+  id: '/getting-started',
+  path: '/getting-started',
+  getParentRoute: () => LandingRoute,
+} as any)
+const MainBlogIndexRoute = MainBlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => MainRoute,
 } as any)
-const BlogSlugRoute = BlogSlugRouteImport.update({
+const MainBlogSlugRoute = MainBlogSlugRouteImport.update({
   id: '/blog/$slug',
   path: '/blog/$slug',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => MainRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/test-error': typeof TestErrorRoute
-  '/blog/$slug': typeof BlogSlugRoute
-  '/blog/': typeof BlogIndexRoute
+  '/': typeof LandingIndexRoute
+  '/getting-started': typeof LandingGettingStartedRoute
+  '/about': typeof MainAboutRoute
+  '/test-error': typeof MainTestErrorRoute
+  '/blog/$slug': typeof MainBlogSlugRoute
+  '/blog/': typeof MainBlogIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/test-error': typeof TestErrorRoute
-  '/blog/$slug': typeof BlogSlugRoute
-  '/blog': typeof BlogIndexRoute
+  '/': typeof LandingIndexRoute
+  '/getting-started': typeof LandingGettingStartedRoute
+  '/about': typeof MainAboutRoute
+  '/test-error': typeof MainTestErrorRoute
+  '/blog/$slug': typeof MainBlogSlugRoute
+  '/blog': typeof MainBlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/test-error': typeof TestErrorRoute
-  '/blog/$slug': typeof BlogSlugRoute
-  '/blog/': typeof BlogIndexRoute
+  '/_landing': typeof LandingRouteWithChildren
+  '/_main': typeof MainRouteWithChildren
+  '/_landing/getting-started': typeof LandingGettingStartedRoute
+  '/_main/about': typeof MainAboutRoute
+  '/_main/test-error': typeof MainTestErrorRoute
+  '/_landing/': typeof LandingIndexRoute
+  '/_main/blog/$slug': typeof MainBlogSlugRoute
+  '/_main/blog/': typeof MainBlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/test-error' | '/blog/$slug' | '/blog/'
+  fullPaths:
+    | '/'
+    | '/getting-started'
+    | '/about'
+    | '/test-error'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/test-error' | '/blog/$slug' | '/blog'
-  id: '__root__' | '/' | '/about' | '/test-error' | '/blog/$slug' | '/blog/'
+  to:
+    | '/'
+    | '/getting-started'
+    | '/about'
+    | '/test-error'
+    | '/blog/$slug'
+    | '/blog'
+  id:
+    | '__root__'
+    | '/_landing'
+    | '/_main'
+    | '/_landing/getting-started'
+    | '/_main/about'
+    | '/_main/test-error'
+    | '/_landing/'
+    | '/_main/blog/$slug'
+    | '/_main/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  TestErrorRoute: typeof TestErrorRoute
-  BlogSlugRoute: typeof BlogSlugRoute
-  BlogIndexRoute: typeof BlogIndexRoute
+  LandingRoute: typeof LandingRouteWithChildren
+  MainRoute: typeof MainRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/test-error': {
-      id: '/test-error'
-      path: '/test-error'
-      fullPath: '/test-error'
-      preLoaderRoute: typeof TestErrorRouteImport
+    '/_main': {
+      id: '/_main'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof MainRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/_landing': {
+      id: '/_landing'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof LandingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/_landing/': {
+      id: '/_landing/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof LandingIndexRouteImport
+      parentRoute: typeof LandingRoute
     }
-    '/blog/': {
-      id: '/blog/'
+    '/_main/test-error': {
+      id: '/_main/test-error'
+      path: '/test-error'
+      fullPath: '/test-error'
+      preLoaderRoute: typeof MainTestErrorRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_main/about': {
+      id: '/_main/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof MainAboutRouteImport
+      parentRoute: typeof MainRoute
+    }
+    '/_landing/getting-started': {
+      id: '/_landing/getting-started'
+      path: '/getting-started'
+      fullPath: '/getting-started'
+      preLoaderRoute: typeof LandingGettingStartedRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_main/blog/': {
+      id: '/_main/blog/'
       path: '/blog'
       fullPath: '/blog/'
-      preLoaderRoute: typeof BlogIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof MainBlogIndexRouteImport
+      parentRoute: typeof MainRoute
     }
-    '/blog/$slug': {
-      id: '/blog/$slug'
+    '/_main/blog/$slug': {
+      id: '/_main/blog/$slug'
       path: '/blog/$slug'
       fullPath: '/blog/$slug'
-      preLoaderRoute: typeof BlogSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof MainBlogSlugRouteImport
+      parentRoute: typeof MainRoute
     }
   }
 }
 
+interface LandingRouteChildren {
+  LandingGettingStartedRoute: typeof LandingGettingStartedRoute
+  LandingIndexRoute: typeof LandingIndexRoute
+}
+
+const LandingRouteChildren: LandingRouteChildren = {
+  LandingGettingStartedRoute: LandingGettingStartedRoute,
+  LandingIndexRoute: LandingIndexRoute,
+}
+
+const LandingRouteWithChildren =
+  LandingRoute._addFileChildren(LandingRouteChildren)
+
+interface MainRouteChildren {
+  MainAboutRoute: typeof MainAboutRoute
+  MainTestErrorRoute: typeof MainTestErrorRoute
+  MainBlogSlugRoute: typeof MainBlogSlugRoute
+  MainBlogIndexRoute: typeof MainBlogIndexRoute
+}
+
+const MainRouteChildren: MainRouteChildren = {
+  MainAboutRoute: MainAboutRoute,
+  MainTestErrorRoute: MainTestErrorRoute,
+  MainBlogSlugRoute: MainBlogSlugRoute,
+  MainBlogIndexRoute: MainBlogIndexRoute,
+}
+
+const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  TestErrorRoute: TestErrorRoute,
-  BlogSlugRoute: BlogSlugRoute,
-  BlogIndexRoute: BlogIndexRoute,
+  LandingRoute: LandingRouteWithChildren,
+  MainRoute: MainRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

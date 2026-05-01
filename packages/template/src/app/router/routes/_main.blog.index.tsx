@@ -6,7 +6,7 @@ const pageTitle = 'Blog | React Template';
 const siteDescription =
   'A tropical, breathable Vite React starter with TanStack Router, TanStack Query, and type-safe routing.';
 
-export const Route = createFileRoute('/blog/')({
+export const Route = createFileRoute('/_main/blog/')({
   head: () => ({
     links: [{ rel: 'canonical', href: canonical }],
     meta: [

@@ -1,4 +1,4 @@
-import { Outlet, createRootRoute, useLocation } from '@tanstack/react-router';
+import { Outlet, createRootRoute } from '@tanstack/react-router';
 import type { ErrorComponentProps } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
@@ -7,12 +7,9 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { queryClient } from '#/shared/lib/query-client';
 import { ErrorBoundary } from '#/shared/ui/app';
 import { RouteError, Toaster } from '#/shared/ui';
-import Header from '#/shared/ui/widgets/header';
-import Footer from '#/shared/ui/widgets/footer';
 
 import '../../styles/styles.css';
 
-// TanStack Router Error Component for route-level errors (uses shared RouteError from UI)
 function RouterErrorComponent({ error, reset }: ErrorComponentProps) {
   const handleRetry = () => {
     reset();
@@ -37,8 +34,6 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
-  const { pathname } = useLocation();
-  const isHome = pathname === '/';
   return (
     <ErrorBoundary
       fallback={(err, reset) => (
@@ -53,10 +48,7 @@ function RootComponent() {
       )}
     >
       <QueryClientProvider client={queryClient}>
-        {!isHome && <Header />}
         <Outlet />
-        {!isHome && <Footer />}
-
         <Toaster />
         <ReactQueryDevtools initialIsOpen={false} />
         <TanStackDevtools

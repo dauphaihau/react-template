@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useGetBlogQuery } from '#/shared/server-state/blog';
 
-export const Route = createFileRoute('/blog/$slug')({
+export const Route = createFileRoute('/_main/blog/$slug')({
   head: ({ params }) => ({
     links: [{ rel: 'canonical', href: `https://example.com/blog/${params.slug}` }],
   }),
