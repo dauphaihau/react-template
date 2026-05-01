@@ -4,16 +4,18 @@ CLI package for `create-react-template`, used to scaffold a React application fr
 
 This package is published as `@dauphaihau/create-react-template` and exposes the `create-react-template` command.
 
+> **Note:** Use the full scoped name (`@dauphaihau/create-react-template`) with `bunx`/`npx`. The unscoped `create-react-template` command is only available after a global install (`npm install -g @dauphaihau/create-react-template`).
+
 ## Quick Start
 
 ```bash
-bunx create-react-template my-app
+bunx @dauphaihau/create-react-template my-app
 ```
 
 You can also run it with npm:
 
 ```bash
-npx create-react-template my-app
+npx @dauphaihau/create-react-template my-app
 ```
 
 The CLI prompts for:
@@ -28,12 +30,12 @@ The CLI prompts for:
 
 For the generated app stack and project structure, see the template README:
 
-https://github.com/dauphaihau/react-template/tree/main/packages/template
+https://github.com/dauphaihau/react-template/tree/production/packages/template
 
 ## Usage
 
 ```bash
-create-react-template my-app
+bunx @dauphaihau/create-react-template my-app
 cd my-app
 bun run dev
 ```

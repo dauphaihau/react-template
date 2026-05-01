@@ -4,6 +4,8 @@ A Vite + React 19 starter template with TypeScript, TanStack Router, TanStack Qu
 
 This package is the template source used by the `create-react-template` CLI.
 
+![Home page](./public/screenshot-home.png)
+
 ## Architecture Influences
 
 This template is not a strict implementation of a single architecture. It combines a few practical ideas:
