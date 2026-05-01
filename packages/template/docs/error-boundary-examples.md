@@ -21,7 +21,7 @@ This document provides practical, copy-paste examples for implementing error bou
 
 ```tsx
 // src/features/user-profile/UserProfile.container.tsx
-import { ErrorBoundary } from '#/shared/lib/error-boundary'
+import { ErrorBoundary } from '#/shared/ui/app/error-boundary'
 import { ErrorDisplay } from '#/shared/ui'
 import { UserProfile } from './UserProfile'
 
@@ -42,7 +42,7 @@ export function UserProfileContainer({ userId }: { userId: string }) {
 
 ```tsx
 // src/widgets/Sidebar/Sidebar.container.tsx
-import { ErrorBoundary } from '#/shared/lib/error-boundary'
+import { ErrorBoundary } from '#/shared/ui/app/error-boundary'
 
 export function SidebarContainer() {
   return (
@@ -143,7 +143,7 @@ export const Route = createFileRoute('/dashboard')({
 
 ```tsx
 // src/features/comments/CommentList.container.tsx
-import { ErrorBoundary } from '#/shared/lib/error-boundary'
+import { ErrorBoundary } from '#/shared/ui/app/error-boundary'
 import { CommentList } from './CommentList'
 import { useQuery } from '@tanstack/react-query'
 
@@ -176,7 +176,7 @@ export function CommentListContainer({ postId }: { postId: string }) {
 
 ```tsx
 // src/features/notifications/NotificationPanel.container.tsx
-import { ErrorBoundary } from '#/shared/lib/error-boundary'
+import { ErrorBoundary } from '#/shared/ui/app/error-boundary'
 import { useState } from 'react'
 import { NotificationPanel } from './NotificationPanel'
 
@@ -217,7 +217,7 @@ export function NotificationPanelContainer() {
 
 ```tsx
 // src/features/file-upload/FileUpload.container.tsx
-import { useErrorHandler } from '#/shared/lib/error-boundary'
+import { useErrorHandler } from '#/shared/hooks/use-error-handler'
 import { useState } from 'react'
 import { FileUpload } from './FileUpload'
 
@@ -259,7 +259,7 @@ export function FileUploadContainer() {
 // src/features/weather/WeatherWidget.container.tsx
 import { useState, useEffect } from 'react'
 import { WeatherWidget } from './WeatherWidget'
-import { NetworkError } from '#/shared/lib/error-boundary'
+import { NetworkError } from '#/shared/error'
 
 export function WeatherWidgetContainer() {
   const [weather, setWeather] = useState(null)
@@ -309,7 +309,7 @@ import {
   UnauthorizedError,
   ValidationError,
   NetworkError,
-} from '#/shared/lib/error-boundary'
+} from '#/shared/error'
 import { LoginForm } from './LoginForm'
 
 export function LoginFormContainer() {
@@ -364,7 +364,7 @@ import {
   UnauthorizedError,
   NotFoundError,
   isRetryableError,
-} from '#/shared/lib/error-boundary'
+} from '#/shared/error'
 
 export async function apiRequest<T>(
   url: string,
@@ -415,9 +415,9 @@ export async function apiRequest<T>(
 ```tsx
 // src/features/product-list/ProductList.container.tsx
 import { useQuery } from '@tanstack/react-query'
-import { ErrorBoundary } from '#/shared/lib/error-boundary'
+import { ErrorBoundary } from '#/shared/ui/app/error-boundary'
 import { ProductList } from './ProductList'
-import { NotFoundError } from '#/shared/lib/error-boundary'
+import { NotFoundError } from '#/shared/error'
 
 export function ProductListContainer({ categoryId }: { categoryId: string }) {
   const { data, isLoading, error } = useQuery({
@@ -467,7 +467,7 @@ export function ProductListContainer({ categoryId }: { categoryId: string }) {
 ```tsx
 // src/routes/api/submit-form.tsx
 import { createFileRoute } from '@tanstack/react-router'
-import { ValidationError } from '#/shared/lib/error-boundary'
+import { ValidationError } from '#/shared/error'
 
 export const Route = createFileRoute('/api/submit-form')({
   loader: async ({ request }) => {
@@ -504,7 +504,7 @@ export const Route = createFileRoute('/api/submit-form')({
 ```tsx
 // src/features/contact-form/ContactForm.container.tsx
 import { useState } from 'react'
-import { ValidationError } from '#/shared/lib/error-boundary'
+import { ValidationError } from '#/shared/error'
 import { ContactForm } from './ContactForm'
 
 export function ContactFormContainer() {
@@ -567,7 +567,7 @@ export function ContactFormContainer() {
 
 ```tsx
 // src/widgets/Header/Header.container.tsx
-import { ErrorBoundary } from '#/shared/lib/error-boundary'
+import { ErrorBoundary } from '#/shared/ui/app/error-boundary'
 import { Header } from './Header'
 
 export function HeaderContainer() {
@@ -598,7 +598,7 @@ export default HeaderContainer
 ```tsx
 // src/routes/dashboard.tsx
 import { createFileRoute } from '@tanstack/react-router'
-import { ErrorBoundary } from '#/shared/lib/error-boundary'
+import { ErrorBoundary } from '#/shared/ui/app/error-boundary'
 import StatsWidget from '#/widgets/StatsWidget'
 import ChartWidget from '#/widgets/ChartWidget'
 import ActivityWidget from '#/widgets/ActivityWidget'
@@ -643,8 +643,8 @@ function WidgetError({ name }: { name: string }) {
 ```tsx
 // src/routes/blog.$slug.tsx
 import { createFileRoute, ErrorComponentProps } from '@tanstack/react-router'
-import { ErrorBoundary } from '#/shared/lib/error-boundary'
-import { NotFoundError } from '#/shared/lib/error-boundary'
+import { ErrorBoundary } from '#/shared/ui/app/error-boundary'
+import { NotFoundError } from '#/shared/error'
 import { RouteError } from '#/shared/ui'
 
 // Route-level error component

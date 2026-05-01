@@ -6,19 +6,22 @@ This project implements a comprehensive error boundary system that catches and h
 
 ## Architecture
 
-The error boundary system is organized in the `shared` layer:
+The error boundary system is organized across the `shared` layer:
 
 ```
 src/shared/
-  lib/error-boundary/
-    error-boundary.tsx     # React Error Boundary component
+  error/
     error-types.ts         # Custom error classes and utilities
     logger.ts              # Error logging utilities
-    use-error-handler.ts   # Hook for programmatic error throwing
     index.ts               # Barrel exports
+  hooks/
+    use-error-handler.ts   # Hook for programmatic error throwing
   ui/app/error-display/
     error-display.tsx      # Presentational error UI
     route-error.tsx        # Route-specific error component
+    index.ts               # Barrel exports
+  ui/app/error-boundary/
+    error-boundary.tsx     # React Error Boundary component
     index.ts               # Barrel exports
 ```
 
@@ -77,7 +80,7 @@ export const Route = createFileRoute('/my-page')({
 Wrap specific parts of your app with custom error boundaries:
 
 ```tsx
-import { ErrorBoundary } from '#/shared/lib/error-boundary'
+import { ErrorBoundary } from '#/shared/ui/app/error-boundary'
 import { ErrorDisplay } from '#/shared/ui'
 
 function MyFeature() {
@@ -102,7 +105,7 @@ function MyFeature() {
 Use the `useErrorHandler` hook to throw errors programmatically:
 
 ```tsx
-import { useErrorHandler } from '#/shared/lib/error-boundary'
+import { useErrorHandler } from '#/shared/hooks/use-error-handler'
 
 function MyComponent() {
   const { throwError } = useErrorHandler()
@@ -129,7 +132,7 @@ import {
   ValidationError,
   UnauthorizedError,
   NetworkError,
-} from '#/shared/lib/error-boundary'
+} from '#/shared/error'
 
 // Throw specific errors
 throw new NotFoundError('User not found')
@@ -138,7 +141,7 @@ throw new UnauthorizedError('Please log in')
 throw new NetworkError('Failed to fetch data')
 
 // Check error types
-import { isAppError, isRetryableError } from '#/shared/lib/error-boundary'
+import { isAppError, isRetryableError } from '#/shared/error'
 
 try {
   await fetchData()
@@ -299,7 +302,7 @@ Always give users a way to recover from errors:
 Use the logging utilities and consider sending to external services:
 
 ```tsx
-import { logError } from '#/shared/lib/error-boundary'
+import { logError } from '#/shared/error'
 
 onError={(error, errorInfo) => {
   logError(error, {
@@ -333,7 +336,7 @@ This page provides buttons to trigger:
 
 ```tsx
 import { render, screen } from '@testing-library/react'
-import { ErrorBoundary } from '#/shared/lib/error-boundary'
+import { ErrorBoundary } from '#/shared/ui/app/error-boundary'
 
 const ThrowError = () => {
   throw new Error('Test error')
@@ -355,7 +358,7 @@ test('catches errors', () => {
 ### Sentry Integration
 
 ```tsx
-// src/shared/lib/error-boundary/logger.ts
+// src/shared/error/logger.ts
 import * as Sentry from '@sentry/react'
 
 export function logError(error: Error, errorInfo?: ErrorInfo): void {
