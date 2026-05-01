@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useBlogPost } from '#/shared/hooks/use-blog-post';
+import { useGetBlogQuery } from '#/shared/server-state/blog';
 
 export const Route = createFileRoute('/blog/$slug')({
   head: ({ params }) => ({
@@ -10,7 +10,7 @@ export const Route = createFileRoute('/blog/$slug')({
 
 function BlogPost() {
   const { slug } = Route.useParams();
-  const { data: post, isPending, isError } = useBlogPost(Number(slug));
+  const { data: post, isPending, isError } = useGetBlogQuery(Number(slug));
 
   if (isPending) {
     return (

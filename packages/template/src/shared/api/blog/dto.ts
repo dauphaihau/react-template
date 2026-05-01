@@ -1,5 +1,3 @@
-import apiClient from '#/shared/lib/api-client';
-
 export interface BlogPostDto {
   id: number
   slug: string
@@ -20,12 +18,9 @@ export interface BlogPostDto {
   }
 }
 
-export function fetchPosts(page = 1, perPage = 10): Promise<BlogPostDto[]> {
-  return apiClient
-    .get('articles', { searchParams: { page, per_page: perPage } })
-    .json<BlogPostDto[]>();
-}
-
-export function fetchPostById(id: number): Promise<BlogPostDto> {
-  return apiClient.get(`articles/${id}`).json<BlogPostDto>();
+export interface CreateBlogPostDto {
+  title: string
+  description: string
+  body_markdown: string
+  tags?: string[]
 }

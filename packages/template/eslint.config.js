@@ -23,6 +23,13 @@ export default [
     files: ['src/shared/api/**/*.{ts,tsx}'],
     rules: {
       '@typescript-eslint/naming-convention': 'off',
+      'check-file/filename-naming-convention': [
+        'error',
+        {
+          '**/*.{ts,tsx}': 'KEBAB_CASE',
+        },
+        { ignoreMiddleExtensions: true },
+      ],
     },
   },
   // TanStack internal identifiers (__TANSTACK_QUERY_CLIENT__) and Vite env vars

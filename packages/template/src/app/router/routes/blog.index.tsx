@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router';
-import { useBlogPosts } from '#/shared/hooks/use-blog-posts';
+import { useGetBlogsQuery } from '#/shared/server-state/blog';
 
 const canonical = 'https://example.com/blog';
 const pageTitle = 'Blog | React Template';
@@ -19,7 +19,7 @@ export const Route = createFileRoute('/blog/')({
 });
 
 function BlogIndex() {
-  const { data: posts, isPending, isError } = useBlogPosts();
+  const { data: posts, isPending, isError } = useGetBlogsQuery();
 
   if (isPending) {
     return (
