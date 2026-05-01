@@ -8,12 +8,12 @@ export function Footer() {
           <span className="text-sm text-muted-foreground">
             built by{' '}
             <a
-              href="https://github.com/dauphaihau"
+              href="https://hautran.me"
               target="_blank"
               rel="noopener noreferrer"
               className="underline underline-offset-4 hover:text-foreground transition-colors"
             >
-              hautran
+              Hau Tran
             </a>
           </span>
 
