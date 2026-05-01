@@ -24,7 +24,7 @@ function BlogIndex() {
   if (isPending) {
     return (
       <main className="page-wrap px-4 pb-8 pt-14">
-        <p className="text-[var(--sea-ink-soft)]">Loading posts…</p>
+        <p className="text-muted-foreground">Loading posts…</p>
       </main>
     );
   }
@@ -32,7 +32,7 @@ function BlogIndex() {
   if (isError || !posts.length) {
     return (
       <main className="page-wrap px-4 pb-8 pt-14">
-        <p className="text-[var(--sea-ink-soft)]">Failed to load posts.</p>
+        <p className="text-muted-foreground">Failed to load posts.</p>
       </main>
     );
   }
@@ -43,7 +43,7 @@ function BlogIndex() {
     <main className="page-wrap px-4 pb-8 pt-14">
       <section className="mb-4">
         <p className="island-kicker mb-2">Latest Dispatches</p>
-        <h1 className="display-title m-0 text-4xl font-bold tracking-tight text-[var(--sea-ink)] sm:text-5xl">
+        <h1 className="display-title m-0 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
           Blog
         </h1>
       </section>
@@ -59,7 +59,7 @@ function BlogIndex() {
               />
             )
             : null}
-          <h2 className="m-0 text-2xl font-semibold text-[var(--sea-ink)]">
+          <h2 className="m-0 text-2xl font-semibold text-foreground">
             <Link
               to="/blog/$slug"
               params={{ slug: String(featured.id) }}
@@ -68,10 +68,10 @@ function BlogIndex() {
               {featured.title}
             </Link>
           </h2>
-          <p className="mb-2 mt-3 text-base text-[var(--sea-ink-soft)]">
+          <p className="mb-2 mt-3 text-base text-muted-foreground">
             {featured.description}
           </p>
-          <p className="m-0 text-xs text-[var(--sea-ink-soft)]">
+          <p className="m-0 text-xs text-muted-foreground">
             {featured.readable_publish_date}
           </p>
         </article>
@@ -91,7 +91,7 @@ function BlogIndex() {
                 />
               )
               : null}
-            <h2 className="m-0 text-2xl font-semibold text-[var(--sea-ink)]">
+            <h2 className="m-0 text-2xl font-semibold text-foreground">
               <Link
                 to="/blog/$slug"
                 params={{ slug: String(post.id) }}
@@ -100,10 +100,10 @@ function BlogIndex() {
                 {post.title}
               </Link>
             </h2>
-            <p className="mb-2 mt-2 text-sm text-[var(--sea-ink-soft)]">
+            <p className="mb-2 mt-2 text-sm text-muted-foreground">
               {post.description}
             </p>
-            <p className="m-0 text-xs text-[var(--sea-ink-soft)]">
+            <p className="m-0 text-xs text-muted-foreground">
               {post.readable_publish_date}
             </p>
           </article>

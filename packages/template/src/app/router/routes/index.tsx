@@ -8,13 +8,11 @@ function App() {
   return (
     <main className="page-wrap px-4 pb-8 pt-14">
       <section className="island-shell rise-in relative overflow-hidden rounded-[2rem] px-6 py-10 sm:px-10 sm:py-14">
-        <div className="pointer-events-none absolute -left-20 -top-24 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(79,184,178,0.32),transparent_66%)]" />
-        <div className="pointer-events-none absolute -bottom-20 -right-20 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(47,106,74,0.18),transparent_66%)]" />
         <p className="island-kicker mb-3">TanStack Start Base Template</p>
-        <h1 className="display-title mb-5 max-w-3xl text-4xl leading-[1.02] font-bold tracking-tight text-[var(--sea-ink)] sm:text-6xl">
+        <h1 className="display-title mb-5 max-w-3xl text-4xl leading-[1.02] font-bold tracking-tight text-foreground sm:text-6xl">
           Island hours, but for product teams.
         </h1>
-        <p className="mb-8 max-w-2xl text-base text-[var(--sea-ink-soft)] sm:text-lg">
+        <p className="mb-8 max-w-2xl text-base text-muted-foreground sm:text-lg">
           A tropical, breathable app starter with full-document SSR, server
           functions, streaming, and type-safe routing. Calm on the eyes. Fast in
           production.
@@ -59,17 +57,17 @@ function App() {
             className="island-shell feature-card rise-in rounded-2xl p-5"
             style={{ animationDelay: `${(index * 90) + 80}ms` }}
           >
-            <h2 className="mb-2 text-base font-semibold text-[var(--sea-ink)]">
+            <h2 className="mb-2 text-base font-semibold text-foreground">
               {title}
             </h2>
-            <p className="m-0 text-sm text-[var(--sea-ink-soft)]">{desc}</p>
+            <p className="m-0 text-sm text-muted-foreground">{desc}</p>
           </article>
         ))}
       </section>
 
       <section className="island-shell mt-8 rounded-2xl p-6">
         <p className="island-kicker mb-2">Notifications</p>
-        <p className="mb-4 text-sm text-[var(--sea-ink-soft)]">
+        <p className="mb-4 text-sm text-muted-foreground">
           Toast notifications via{' '}
           <a
             href="https://sonner.emilkowal.ski"
@@ -135,7 +133,7 @@ function App() {
 
       <section className="island-shell mt-8 rounded-2xl p-6">
         <p className="island-kicker mb-2">Quick Start</p>
-        <ul className="m-0 list-disc space-y-2 pl-5 text-sm text-[var(--sea-ink-soft)]">
+        <ul className="m-0 list-disc space-y-2 pl-5 text-sm text-muted-foreground">
           <li>
             Edit <code>src/routes/index.tsx</code> to customize the hero and
             product narrative.
