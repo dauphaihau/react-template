@@ -13,7 +13,7 @@ export function ThemeToggle() {
       onClick={toggleMode}
       aria-label={label}
       title={label}
-      className="rounded-full border-0 bg-transparent p-2 text-foreground shadow-none transition"
+      className="cursor-pointer rounded-full border-0 bg-transparent p-2 text-foreground shadow-none transition"
     >
       <Icon className="size-4" />
     </button>
