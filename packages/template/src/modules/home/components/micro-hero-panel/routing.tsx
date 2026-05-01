@@ -1,9 +1,15 @@
 import { ArrowRight } from 'lucide-react';
-import { ROUTE_FILES } from '../../../constants';
+import { ROUTE_FILES, ROUTING_SOURCE_URL } from '../../constants';
 
 export function Routing() {
   return (
-    <div className="relative h-[214px] w-full max-w-[380px] overflow-hidden border border-border cursor-pointer group">
+    <a
+      href={ROUTING_SOURCE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="View routing implementation on GitHub"
+      className="relative block h-[214px] w-full max-w-[380px] overflow-hidden border border-border cursor-pointer group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground/40"
+    >
       <span className="shine absolute -top-1/2 -left-full h-[200%] w-3/4 skew-x-[-20deg] bg-linear-to-r from-transparent via-white/40 to-transparent pointer-events-none z-20" />
 
       <div className="absolute top-0 bottom-0 left-0 right-[140px] flex flex-col justify-between p-5">
@@ -21,7 +27,7 @@ export function Routing() {
           </p>
         </div>
         <span className="text-[9px] font-medium text-foreground flex items-center gap-1.5 group-hover:gap-2.5 transition-all duration-300 delay-[250ms]">
-          View routes{' '}
+          View source{' '}
           <ArrowRight
             size={10}
             className="transition-transform duration-300 group-hover:translate-x-0.5"
@@ -55,6 +61,6 @@ export function Routing() {
       <span className="absolute h-2.5 w-2.5 border-foreground/30 group-hover:border-foreground border-b border-l bottom-0 left-0 transition-colors duration-300" />
       <span className="absolute h-2.5 w-2.5 border-foreground/30 group-hover:border-foreground border-t border-r top-0 right-0 transition-colors duration-300" />
       <span className="absolute h-2.5 w-2.5 border-foreground/30 group-hover:border-foreground border-t border-l top-0 left-0 transition-colors duration-300" />
-    </div>
+    </a>
   );
 }

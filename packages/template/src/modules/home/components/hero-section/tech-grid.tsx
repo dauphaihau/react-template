@@ -1,5 +1,5 @@
 import { ArrowUpRight, Square } from 'lucide-react';
-import { TECH_COLS, techStack } from '../../../constants';
+import { TECH_COLS, techStack } from '../../constants';
 
 export function TechGrid() {
   const gridLines = Array.from(
