@@ -1,12 +1,14 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { CloneCard } from './components/clone-card';
 import { ConfigureCard } from './components/configure-card';
 import { GridConnectors } from './components/grid-connectors';
 import { InstallCard } from './components/install-card';
 import { LaunchCard } from './components/launch-card';
+import type { PackageManager } from './constants';
 
 export function GettingStarted() {
   const gridRef = useRef<HTMLDivElement>(null);
+  const [pm, setPm] = useState<PackageManager>('bun');
   const ref0 = useRef<HTMLDivElement>(null);
   const ref1 = useRef<HTMLDivElement>(null);
   const ref2 = useRef<HTMLDivElement>(null);
@@ -29,10 +31,10 @@ export function GettingStarted() {
           ref={gridRef}
           className="grid grid-cols-1 md:grid-cols-2 grid-rows-[1fr_1fr] gap-px bg-border border border-border relative"
         >
-          <CloneCard codeBlockRef={ref0} />
-          <InstallCard codeBlockRef={ref1} />
+          <CloneCard codeBlockRef={ref0} pm={pm} setPm={setPm} />
+          <InstallCard codeBlockRef={ref1} pm={pm} />
           <ConfigureCard codeBlockRef={ref2} />
-          <LaunchCard codeBlockRef={ref3} />
+          <LaunchCard codeBlockRef={ref3} pm={pm} />
           <GridConnectors containerRef={gridRef} refs={nodeRefs} />
         </div>
       </div>

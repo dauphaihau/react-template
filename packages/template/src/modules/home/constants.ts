@@ -11,6 +11,7 @@ import {
   Zap
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { REPO_BASE_URL, REPO_REF } from '#/shared/config/repo-links';
 
 export const ROUTE_FILES = [
   'index.tsx',
@@ -18,10 +19,6 @@ export const ROUTE_FILES = [
   'blog.$slug.tsx',
   'about.tsx',
 ];
-
-export const REPO_BASE_URL = 'https://github.com/dauphaihau/react-template';
-
-export const REPO_REF = 'production';
 
 export const ROUTING_SOURCE_URL =
   `${REPO_BASE_URL}/tree/${REPO_REF}/packages/template/src/app/router`;

@@ -2,9 +2,17 @@ import { ENV_VARS } from '../constants';
 import { CodeBlock } from './code-block';
 import { StepCard } from './step-card';
 
-export function ConfigureCard({ codeBlockRef }: { codeBlockRef?: React.Ref<HTMLDivElement> }) {
+export function ConfigureCard({
+  codeBlockRef,
+}: {
+  codeBlockRef?: React.Ref<HTMLDivElement>;
+}) {
   return (
-    <StepCard index={2} label="Configure" title="Set up environment">
+    <StepCard
+      index={2}
+      label="Configure"
+      title="Set up environment"
+    >
       <div className="border border-border divide-y divide-border mt-1 mb-0.5">
         {ENV_VARS.map((envVar, idx) => (
           <div

@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { ArrowRightIcon, GithubIcon } from 'lucide-react';
+import { REPO_BASE_URL } from '#/shared/config/repo-links';
 import { Button } from '#/shared/ui';
 
 export function HeroActions() {
@@ -20,7 +21,7 @@ function HeroButtonGithub() {
         className="rounded-none cursor-pointer relative overflow-hidden focus-visible:ring-0 h-8 px-3 py-1 border-dashed"
       >
         <a
-          href="https://github.com/dauphaihau/react-template"
+          href={REPO_BASE_URL}
           target="_blank"
           rel="noopener noreferrer"
         >

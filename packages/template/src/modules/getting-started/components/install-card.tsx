@@ -1,33 +1,28 @@
-import { useState } from 'react';
-import { PM_COMMANDS, PM_OPTIONS } from '../constants';
+import { INSTALL_COMMANDS } from '../constants';
 import type { PackageManager } from '../constants';
 import { CodeBlock } from './code-block';
 import { StepCard } from './step-card';
 
-export function InstallCard({ codeBlockRef }: { codeBlockRef?: React.Ref<HTMLDivElement> }) {
-  const [pm, setPm] = useState<PackageManager>('bun');
-
+export function InstallCard({
+  codeBlockRef,
+  pm,
+}: {
+  codeBlockRef?: React.Ref<HTMLDivElement>;
+  pm: PackageManager;
+}) {
   return (
     <StepCard
       index={1}
-      label="Install"
-      title="Install dependencies"
+      label="Open"
+      title="Enter and install"
       centered
       topExtra={
-        <div className="flex gap-3 mb-1">
-          {PM_OPTIONS.map((pmOpt) => (
-            <button
-              key={pmOpt}
-              onClick={() => setPm(pmOpt)}
-              className={`text-[10px] font-mono pb-0.5 cursor-pointer transition-all duration-200 ${pm === pmOpt ? 'text-foreground border-b-2 border-foreground' : 'text-muted-foreground hover:text-foreground border-b-2 border-transparent'}`}
-            >
-              {pmOpt}
-            </button>
-          ))}
-        </div>
+        <p className="text-[10px] text-muted-foreground mb-1">
+          The CLI creates a new folder for your app. Skip this if you already installed in the prompt.
+        </p>
       }
     >
-      <CodeBlock ref={codeBlockRef} code={PM_COMMANDS[pm]} />
+      <CodeBlock ref={codeBlockRef} code={INSTALL_COMMANDS[pm]} />
     </StepCard>
   );
 }
