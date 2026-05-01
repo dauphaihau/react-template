@@ -1,7 +1,7 @@
 import { ArrowRight } from 'lucide-react';
-import { ROUTE_FILES } from '../constants';
+import { ROUTE_FILES } from '../../../constants';
 
-export function MicroHeroRouting() {
+export function Routing() {
   return (
     <div className="relative h-[214px] w-full max-w-[380px] overflow-hidden border border-border cursor-pointer group">
       <span className="shine absolute -top-1/2 -left-full h-[200%] w-3/4 skew-x-[-20deg] bg-linear-to-r from-transparent via-white/40 to-transparent pointer-events-none z-20" />

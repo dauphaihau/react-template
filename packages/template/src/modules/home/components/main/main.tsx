@@ -1,4 +1,4 @@
-import { HeroSection } from './hero-section';
+import { HeroSection } from './hero-section/hero-section';
 import { MicroHeroPanel } from './micro-hero-panel';
 
 export function Main() {

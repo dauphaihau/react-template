@@ -1,17 +1,17 @@
-import { ArrowUpRight } from 'lucide-react';
-import { STACK_ROWS } from '../constants';
+import { ArrowRight } from 'lucide-react';
+import { ARCH_LAYERS } from '../../../constants';
 
-export function MicroHeroStack() {
+export function Arch() {
   return (
     <div className="relative h-[214px] w-full max-w-[380px] overflow-hidden border border-border cursor-pointer group">
       <span className="shine absolute -top-1/2 -left-full h-[200%] w-3/4 skew-x-[-20deg] bg-linear-to-r from-transparent via-white/40 to-transparent pointer-events-none z-20" />
 
       <div className="p-5 pb-0">
         <span className="text-[8px] uppercase tracking-[0.2em] text-muted-foreground">
-          Stack
+          Architecture
         </span>
         <h2 className="text-[20px] font-bold tracking-tight text-foreground leading-tight mt-1.5">
-          Production ready.
+          Layers, not chaos.
         </h2>
       </div>
 
@@ -20,7 +20,7 @@ export function MicroHeroStack() {
       <div className="absolute top-[80px] bottom-[36px] left-0 right-0 px-5 flex flex-col">
         <div className="flex items-center mb-1">
           <span className="text-[7px] uppercase tracking-wider text-muted-foreground/50 w-[110px]">
-            Name
+            Layer
           </span>
           <span className="text-[7px] uppercase tracking-wider text-muted-foreground/50 w-[70px]">
             Role
@@ -29,14 +29,14 @@ export function MicroHeroStack() {
             Tag
           </span>
         </div>
-        {STACK_ROWS.map((row, i) => (
+        {ARCH_LAYERS.map((row, i) => (
           <div
-            key={row.name}
+            key={row.layer}
             className="flex items-center py-[4px] font-mono opacity-60 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
             style={{ transitionDelay: `${80 + (i * 60)}ms` }}
           >
             <span className="text-[8px] text-foreground w-[110px]">
-              {row.name}
+              {row.layer}
             </span>
             <span className="text-[8px] text-muted-foreground w-[70px]">
               {row.role}
@@ -46,14 +46,24 @@ export function MicroHeroStack() {
             </span>
           </div>
         ))}
+        <div
+          className="flex items-center gap-1 mt-2 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+          style={{ transitionDelay: '260ms' }}
+        >
+          <span className="text-[7px] font-mono text-muted-foreground/40">app</span>
+          <ArrowRight size={7} className="text-muted-foreground/30" />
+          <span className="text-[7px] font-mono text-muted-foreground/40">modules</span>
+          <ArrowRight size={7} className="text-muted-foreground/30" />
+          <span className="text-[7px] font-mono text-muted-foreground/40">shared</span>
+        </div>
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-[36px] flex items-center px-5">
         <span className="ml-auto text-[9px] font-medium text-foreground flex items-center gap-1.5 group-hover:gap-2.5 transition-all duration-300 delay-300">
           Explore{' '}
-          <ArrowUpRight
+          <ArrowRight
             size={10}
-            className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            className="transition-transform duration-300 group-hover:translate-x-0.5"
           />
         </span>
       </div>
