@@ -19,6 +19,19 @@ export const ROUTE_FILES = [
   'about.tsx',
 ];
 
+export const REPO_BASE_URL = 'https://github.com/dauphaihau/react-template';
+
+export const REPO_REF = 'production';
+
+export const ROUTING_SOURCE_URL =
+  `${REPO_BASE_URL}/tree/${REPO_REF}/packages/template/src/app/router`;
+
+export const ARCH_SOURCE_URL =
+  `${REPO_BASE_URL}/tree/${REPO_REF}/packages/template/src`;
+
+export const DATA_SOURCE_URL =
+  `${REPO_BASE_URL}/tree/${REPO_REF}/packages/template/src/shared`;
+
 export const QUERY_STATES = [
   { name: 'fresh', color: '#22c55e' },
   { name: 'stale', color: '#f59e0b' },
