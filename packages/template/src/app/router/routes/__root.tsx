@@ -5,7 +5,7 @@ import { TanStackDevtools } from '@tanstack/react-devtools';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { queryClient } from '#/shared/lib/query-client';
-import { ErrorBoundary } from '#/shared/lib/error-boundary';
+import { ErrorBoundary } from '#/shared/ui/app';
 import { RouteError, Toaster } from '#/shared/ui';
 import Header from '#/shared/ui/widgets/header';
 import Footer from '#/shared/ui/widgets/footer';

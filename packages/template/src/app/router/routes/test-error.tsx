@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
-import { useErrorHandler } from '#/shared/lib/error-boundary';
+import { useErrorHandler } from '#/shared/hooks/use-error-handler';
 
 export const Route = createFileRoute('/test-error')({
   component: TestErrorPage,
