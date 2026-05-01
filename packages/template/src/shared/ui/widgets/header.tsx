@@ -11,7 +11,7 @@ export default function Header() {
             className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3 py-1.5 text-sm text-foreground no-underline shadow-sm sm:px-4 sm:py-2"
           >
             <span className="h-2 w-2 rounded-full bg-foreground" />
-            TanStack Start
+            React Template
           </Link>
         </h2>
 
@@ -71,7 +71,7 @@ export default function Header() {
             About
           </Link>
           <a
-            href="https://tanstack.com/start/latest/docs/framework/react/overview"
+            href="https://tanstack.com/router/latest/docs/framework/react/overview"
             className="nav-link"
             target="_blank"
             rel="noreferrer"

@@ -2,9 +2,9 @@ import { Link, createFileRoute } from '@tanstack/react-router';
 import { useBlogPosts } from '#/shared/hooks/use-blog-posts';
 
 const canonical = 'https://example.com/blog';
-const pageTitle = 'Blog | TanStack Start';
+const pageTitle = 'Blog | React Template';
 const siteDescription =
-  'A tropical, breathable app starter with full-document SSR, server functions, streaming, and type-safe routing.';
+  'A tropical, breathable Vite React starter with TanStack Router, TanStack Query, and type-safe routing.';
 
 export const Route = createFileRoute('/blog/')({
   head: () => ({

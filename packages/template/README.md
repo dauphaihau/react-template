@@ -1,6 +1,6 @@
 # @dauphaihau/react-template
 
-A TanStack Start + React 19 starter template with TypeScript, TanStack Router, TanStack Query, Tailwind CSS, and a module-based folder structure.
+A Vite + React 19 starter template with TypeScript, TanStack Router, TanStack Query, Tailwind CSS, and a module-based folder structure.
 
 This package is the template source used by the `create-react-template` CLI.
 

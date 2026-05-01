@@ -18,9 +18,9 @@ function About() {
           Built for shipping fast.
         </h1>
         <p className="m-0 max-w-3xl text-base leading-8 text-muted-foreground">
-          TanStack Start gives you type-safe routing, server functions, and
-          modern SSR defaults so you can focus on product work instead of
-          framework glue.
+          Vite, TanStack Router, and TanStack Query give you fast local
+          development, type-safe routing, and practical server-state defaults
+          so you can focus on product work instead of framework glue.
         </p>
       </section>
     </main>

@@ -1,7 +1,7 @@
 {
   "name": "@dauphaihau/react-template",
   "version": "1.2.0",
-  "description": "A modern TanStack Start starter template with React, TanStack Router, React Query, and Tailwind CSS. Built with TypeScript, Feature-Sliced Design, and best practices.",
+  "description": "A modern Vite React starter template with TanStack Router, TanStack Query, and Tailwind CSS. Built with TypeScript, Feature-Sliced Design, and best practices.",
   "license": "MIT",
   "author": "dauphaihau",
   "homepage": "https://github.com/dauphaihau/react-template#readme",
@@ -16,8 +16,8 @@
   "keywords": [
     "react",
     "tanstack",
-    "tanstack-start",
     "tanstack-router",
+    "tanstack-query",
     "starter-template",
     "typescript",
     "tailwind",
