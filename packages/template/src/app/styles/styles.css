@@ -68,6 +68,35 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+:root {
+  --nav-height: 3.5rem;
+  --footer-height: 3.5rem;
+}
+
+@keyframes shine {
+  from { left: -50%; }
+  to   { left: 150%; }
+}
+.group:hover .shine {
+  animation: shine 0.9s ease-out 0.1s;
+}
+
+@keyframes ping-sequence {
+  0%, 49.9% { transform: scale(1); opacity: 0.75; }
+  20%        { transform: scale(2); opacity: 0; }
+  50%, 100%  { transform: scale(1); opacity: 0; }
+  70%        { transform: scale(2); opacity: 0; }
+}
+@keyframes rotate-sequence {
+  0%, 25%   { transform: rotate(0deg);  }
+  40%, 75%  { transform: rotate(45deg); }
+  90%, 100% { transform: rotate(90deg); }
+}
+@keyframes tech-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 :root[data-theme="dark"],
 .dark {
   --background: oklch(0.145 0 0);

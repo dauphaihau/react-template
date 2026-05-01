@@ -1,4 +1,4 @@
-import { Outlet, createRootRoute } from '@tanstack/react-router';
+import { Outlet, createRootRoute, useLocation } from '@tanstack/react-router';
 import type { ErrorComponentProps } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
@@ -37,6 +37,8 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
   return (
     <ErrorBoundary
       fallback={(err, reset) => (
@@ -51,9 +53,10 @@ function RootComponent() {
       )}
     >
       <QueryClientProvider client={queryClient}>
-        <Header />
+        {!isHome && <Header />}
         <Outlet />
-        <Footer />
+        {!isHome && <Footer />}
+
         <Toaster />
         <ReactQueryDevtools initialIsOpen={false} />
         <TanStackDevtools
