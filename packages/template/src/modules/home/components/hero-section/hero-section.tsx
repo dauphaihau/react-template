@@ -14,7 +14,8 @@ export function HeroSection() {
         </h1>
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground w640:text-base">
           A modern Vite React starter with TanStack Router, React Query,
-          TypeScript, and Tailwind CSS.
+          TypeScript, and Tailwind CSS. Use the lab route to inspect example
+          states, error handling, and nested routing in isolation.
         </p>
         <HeroActions />
       </div>
