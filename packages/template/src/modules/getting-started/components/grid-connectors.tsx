@@ -69,7 +69,7 @@ export function GridConnectors({
 
   return (
     <svg
-      className="absolute inset-0 z-10 pointer-events-none overflow-visible hidden md:block"
+      className="absolute inset-0 z-10 pointer-events-none overflow-visible hidden w768:block"
       width="100%"
       height="100%"
     >

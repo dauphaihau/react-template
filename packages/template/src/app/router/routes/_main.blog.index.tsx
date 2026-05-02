@@ -43,19 +43,19 @@ function BlogIndex() {
     <main className="page-wrap px-4 pb-8 pt-14">
       <section className="mb-4">
         <p className="island-kicker mb-2">Latest Dispatches</p>
-        <h1 className="display-title m-0 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+        <h1 className="display-title m-0 text-4xl font-bold tracking-tight text-foreground w640:text-5xl">
           Blog
         </h1>
       </section>
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <article className="island-shell rise-in rounded-2xl p-5 sm:p-6 lg:col-span-2">
+      <section className="grid gap-4 w640:grid-cols-2 w1024:grid-cols-3">
+        <article className="island-shell rise-in rounded-2xl p-5 w640:p-6 w1024:col-span-2">
           {featured.cover_image
             ? (
               <img
                 src={featured.cover_image}
                 alt=""
-                className="mb-4 h-44 w-full rounded-xl object-cover xl:h-60"
+                className="mb-4 h-44 w-full rounded-xl object-cover w1280:h-60"
               />
             )
             : null}
@@ -79,7 +79,7 @@ function BlogIndex() {
         {rest.map((post, index) => (
           <article
             key={post.id}
-            className="island-shell rise-in rounded-2xl p-5 sm:last:col-span-2 lg:last:col-span-1"
+            className="island-shell rise-in rounded-2xl p-5 w640:last:col-span-2 w1024:last:col-span-1"
             style={{ animationDelay: `${(index * 80) + 120}ms` }}
           >
             {post.cover_image

@@ -19,7 +19,7 @@ function LandingLayout() {
 function LandingNav() {
   return (
     <div className="mx-auto flex w-full max-w-7xl min-w-0 flex-col border-x border-border">
-      <nav className="relative flex items-center justify-between px-4 py-4 sm:px-6">
+      <nav className="relative flex items-center justify-between px-4 py-4 w640:px-6">
         <Link to="/" className="text-sm font-semibold tracking-tight">
           React Template
         </Link>
@@ -32,7 +32,7 @@ function LandingNav() {
 function LandingFooter() {
   return (
     <div className="mx-auto flex w-full max-w-7xl min-w-0 flex-col border-x border-border">
-      <footer className="relative px-4 py-4 sm:px-6">
+      <footer className="relative px-4 py-4 w640:px-6">
         <div className="flex items-center justify-between">
           <span className="text-sm text-muted-foreground">
             built by{' '}

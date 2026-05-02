@@ -5,7 +5,7 @@ import { Button } from '#/shared/ui';
 
 export function HeroActions() {
   return (
-    <div className="mt-6 flex flex-wrap items-center gap-3 sm:gap-4">
+    <div className="mt-6 flex flex-wrap items-center gap-3 w640:gap-4">
       <HeroButtonGithub />
       <HeroButtonGetStarted />
     </div>

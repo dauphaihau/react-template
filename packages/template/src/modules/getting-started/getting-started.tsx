@@ -29,7 +29,7 @@ export function GettingStarted() {
 
         <div
           ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 grid-rows-[1fr_1fr] gap-px bg-border border border-border relative"
+          className="grid grid-cols-1 w768:grid-cols-2 grid-rows-[1fr_1fr] gap-px bg-border border border-border relative"
         >
           <CloneCard codeBlockRef={ref0} pm={pm} setPm={setPm} />
           <InstallCard codeBlockRef={ref1} pm={pm} />
