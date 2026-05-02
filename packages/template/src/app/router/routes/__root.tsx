@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { queryClient } from '#/shared/lib/query-client';
 import { ErrorBoundary } from '#/shared/ui/app';
 import { RouteError, Toaster } from '#/shared/ui';
+import { NotFound } from '#/shared/ui/app';
 
 import '../../styles/styles.css';
 
@@ -31,6 +32,7 @@ function RouterErrorComponent({ error, reset }: ErrorComponentProps) {
 export const Route = createRootRoute({
   component: RootComponent,
   errorComponent: RouterErrorComponent,
+  notFoundComponent: NotFound,
 });
 
 function RootComponent() {
