@@ -1,12 +1,12 @@
 import {
-  Atom,
   Component,
+  Layers,
   FileCode2,
   FlaskConical,
   ListChecks,
   Navigation,
   Package,
-  RefreshCcw,
+  Database,
   Wind,
   Zap,
 } from 'lucide-react';
@@ -64,21 +64,27 @@ export const techStack: {
   },
   {
     name: 'React Query',
-    desc: 'Data',
+    desc: 'Server State',
     href: 'https://tanstack.com/query',
-    icon: RefreshCcw,
+    icon: Database,
   },
   {
-    name: 'TypeScript',
-    desc: 'Language',
-    href: 'https://typescriptlang.org',
-    icon: FileCode2,
+    name: 'Zustand',
+    desc: 'Client State',
+    href: 'https://zustand-demo.pmnd.rs',
+    icon: Layers,
   },
   {
     name: 'Tailwind v4',
     desc: 'Styling',
     href: 'https://tailwindcss.com',
     icon: Wind,
+  },
+  {
+    name: 'TypeScript',
+    desc: 'Language',
+    href: 'https://typescriptlang.org',
+    icon: FileCode2,
   },
   {
     name: 'Stylistic',
@@ -91,12 +97,6 @@ export const techStack: {
     desc: 'Testing',
     href: 'https://vitest.dev',
     icon: FlaskConical,
-  },
-  {
-    name: 'React 19',
-    desc: 'UI',
-    href: 'https://react.dev',
-    icon: Atom,
   },
   {
     name: 'shadcn/ui',
