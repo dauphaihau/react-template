@@ -70,15 +70,21 @@ program
       // --- Optional features ---
       const features = (await p.multiselect({
         message: "Select optional features",
+        initialValues: ["zustand" as FeatureId],
         options: [
           {
-            label: "Auth — current user query, auth mutations, login/register routes",
-            value: "auth" as FeatureId,
+            label:
+              "Zustand — persisted lab sidebar state with a client-state store example",
+            value: "zustand" as FeatureId,
           },
           {
             label:
               "GitHub Actions — CI workflow (typecheck, lint, test, build)",
             value: "github-actions" as FeatureId,
+          },
+          {
+            label: "Auth — current user query, auth mutations, login/register routes",
+            value: "auth" as FeatureId,
           },
         ],
         required: false,

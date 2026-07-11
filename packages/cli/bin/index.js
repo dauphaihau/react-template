@@ -190,14 +190,19 @@ program.name("create-react-template").description("Scaffold a TanStack Start + R
     }
     const features = await p.multiselect({
       message: "Select optional features",
+      initialValues: ["zustand"],
       options: [
         {
-          label: "Auth \u2014 current user query, auth mutations, login/register routes",
-          value: "auth"
+          label: "Zustand \u2014 persisted lab sidebar state with a client-state store example",
+          value: "zustand"
         },
         {
           label: "GitHub Actions \u2014 CI workflow (typecheck, lint, test, build)",
           value: "github-actions"
+        },
+        {
+          label: "Auth \u2014 current user query, auth mutations, login/register routes",
+          value: "auth"
         }
       ],
       required: false
