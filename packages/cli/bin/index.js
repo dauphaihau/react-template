@@ -192,7 +192,7 @@ program.name("create-react-template").description("Scaffold a TanStack Start + R
       message: "Select optional features",
       options: [
         {
-          label: "Auth \u2014 AuthContext, useAuth hook, login/register routes",
+          label: "Auth \u2014 current user query, auth mutations, login/register routes",
           value: "auth"
         },
         {

@@ -72,7 +72,7 @@ program
         message: "Select optional features",
         options: [
           {
-            label: "Auth — AuthContext, useAuth hook, login/register routes",
+            label: "Auth — current user query, auth mutations, login/register routes",
             value: "auth" as FeatureId,
           },
           {

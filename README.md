@@ -30,7 +30,7 @@ The CLI scaffolds a TanStack Start + React 19 application with:
 
 Optional features are added by CLI prompt:
 
-- Auth: `AuthContext`, `useAuth`, login route, and register route
+- Auth: `src/modules/auth`, current user query, auth mutations, and login/register routes
 - GitHub Actions: CI workflow for typecheck, lint, test, and build
 
 ## Using the CLI
