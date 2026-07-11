@@ -18,20 +18,6 @@ export default [
       'check-file/filename-naming-convention': 'off',
     },
   },
-  // Server response types use snake_case field names
-  {
-    files: ['src/shared/api/**/*.{ts,tsx}'],
-    rules: {
-      '@typescript-eslint/naming-convention': 'off',
-      'check-file/filename-naming-convention': [
-        'error',
-        {
-          '**/*.{ts,tsx}': 'KEBAB_CASE',
-        },
-        { ignoreMiddleExtensions: true },
-      ],
-    },
-  },
   // TanStack internal identifiers (__TANSTACK_QUERY_CLIENT__) and Vite env vars
   {
     files: ['src/shared/lib/**/*.{ts,tsx}', 'src/vite-env.d.ts'],
@@ -39,11 +25,13 @@ export default [
       '@typescript-eslint/naming-convention': 'off',
     },
   },
-  // Project modules use lowercase kebab-case filenames; React symbols stay PascalCase.
+  // App, modules, and shared infrastructure use lowercase kebab-case filenames.
+  // Middle extensions like *.api.ts and *.mutation.ts are allowed.
   {
     files: [
+      'src/app/providers/**/*.{ts,tsx}',
       'src/modules/**/*.{ts,tsx}',
-      'src/shared/lib/**/*.{ts,tsx}',
+      'src/shared/**/*.{ts,tsx}',
     ],
     rules: {
       'check-file/filename-naming-convention': [
@@ -51,14 +39,8 @@ export default [
         {
           '**/*.{ts,tsx}': 'KEBAB_CASE',
         },
+        { ignoreMiddleExtensions: true },
       ],
-    },
-  },
-  // shared/ui uses kebab-case filenames (button.tsx, input.tsx, etc.)
-  {
-    files: ['src/shared/ui/**/*.{ts,tsx}'],
-    rules: {
-      'check-file/filename-naming-convention': 'off',
     },
   },
   // Test files use *.test.ts / *.spec.ts convention — exempt from KEBAB_CASE check.

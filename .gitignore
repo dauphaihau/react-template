@@ -1,14 +1,19 @@
+## Dependencies
 node_modules
+
+## OS files
 .DS_Store
+
+## Build output
 dist
-dist-ssr
+
+## Local environment
 *.local
 .env
-.nitro
+
+## Framework caches
 .tanstack
-.wrangler
-.output
-.vinxi
-__unconfig*
-todos.json
 .content-collections
+
+## Editor files
+.idea

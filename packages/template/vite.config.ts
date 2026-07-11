@@ -10,17 +10,26 @@ import viteReact from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
 const isTest = process.env.VITEST === 'true';
+const isDevtoolsEventBusEnabled = process.env.TANSTACK_DEVTOOLS_EVENT_BUS === 'true';
 
 const config = defineConfig({
   plugins: [
-    devtools(),
+    devtools({
+      eventBusConfig: {
+        enabled: isDevtoolsEventBusEnabled,
+      },
+    }),
     ...(isTest ? [] : [contentCollections()]),
     tsconfigPaths({ projects: ['./tsconfig.json'] }),
     tailwindcss(),
     ...(isTest
       ? []
       : [tanstackRouter({
-        target: 'react', autoCodeSplitting: true, routesDirectory: './src/app/router/routes', generatedRouteTree: './src/app/router/routeTree.gen.ts', 
+        target: 'react',
+        autoCodeSplitting: true,
+        routesDirectory: './src/app/router/routes',
+        generatedRouteTree: './src/app/router/routeTree.gen.ts',
+        routeFileIgnorePattern: '(^|/)_components(/|$)',
       })]),
     viteReact(),
   ],
