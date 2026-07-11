@@ -9,22 +9,26 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from '#/shared/ui/primitives';
+import { cn } from '#/shared/lib/utils';
 import { labNavGroups } from './constants';
 
-export function LabSidebar() {
+export function LabNavigation() {
   const location = useLocation();
+  const { state } = useSidebar();
+  const isCollapsed = state === 'collapsed';
 
   return (
-    <Sidebar collapsible="none">
-      <SidebarHeader className='border-none'>
+    <Sidebar collapsible="icon">
+      <SidebarHeader className={cn('border-none', isCollapsed && 'px-3')}>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton className="h-auto gap-3 py-1.5">
+            <SidebarMenuButton className={cn('h-auto gap-3 py-1.5', isCollapsed && 'justify-center px-0')}>
               <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-sidebar-primary text-sidebar-primary-foreground">
                 <span className="text-base font-bold">L</span>
               </div>
-              <div className="grid flex-1 text-left text-sm leading-tight">
+              <div className={cn('grid flex-1 text-left text-sm leading-tight', isCollapsed && 'hidden')}>
                 <span className="truncate font-semibold">Template Lab</span>
                 <span className="truncate text-xs text-sidebar-foreground/70">Sandbox</span>
               </div>
@@ -33,10 +37,10 @@ export function LabSidebar() {
         </SidebarMenu>
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent className={cn(isCollapsed && 'px-2')}>
         {labNavGroups.map((group) => (
           <SidebarGroup key={group.title}>
-            <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
+            {!isCollapsed && <SidebarGroupLabel>{group.title}</SidebarGroupLabel>}
             <SidebarGroupContent>
               <SidebarMenu>
                 {group.items.map((item) => {
@@ -49,18 +53,22 @@ export function LabSidebar() {
                     <SidebarMenuItem key={item.title}>
                       {item.to
                         ? (
-                          <SidebarMenuButton asChild isActive={isActive}>
+                          <SidebarMenuButton
+                            asChild
+                            isActive={isActive}
+                            className={cn(isCollapsed && 'justify-center px-0')}
+                          >
                             <Link to={item.to}>
                               <Icon className="size-4 shrink-0" />
-                              <span className="flex-1 truncate">{item.title}</span>
+                              <span className={cn('flex-1 truncate', isCollapsed && 'hidden')}>{item.title}</span>
                             </Link>
                           </SidebarMenuButton>
                         )
                         : (
-                          <SidebarMenuButton asChild>
+                          <SidebarMenuButton asChild className={cn(isCollapsed && 'justify-center px-0')}>
                             <a href={item.href}>
                               <Icon className="size-4 shrink-0" />
-                              <span className="flex-1 truncate">{item.title}</span>
+                              <span className={cn('flex-1 truncate', isCollapsed && 'hidden')}>{item.title}</span>
                             </a>
                           </SidebarMenuButton>
                         )}

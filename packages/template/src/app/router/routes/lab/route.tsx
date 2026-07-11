@@ -1,10 +1,9 @@
 import {
-  Outlet, createFileRoute, useNavigate, useRouterState, 
+  Outlet, createFileRoute, useNavigate, useRouterState,
 } from '@tanstack/react-router';
 import type { ErrorComponentProps } from '@tanstack/react-router';
-import { NotFound, RouteError } from '#/shared/ui/app';
-import { SidebarInset, SidebarProvider } from '#/shared/ui/primitives';
-import { LabSidebar } from './_components/lab-sidebar';
+import { AppShell, NotFound, RouteError } from '#/shared/ui/app';
+import { LabNavigation } from './_components/lab-navigation';
 
 export const Route = createFileRoute('/lab')({
   component: LabLayout,
@@ -27,24 +26,13 @@ function LabErrorComponent({ error, reset }: ErrorComponentProps) {
 
 function LabLayout() {
   return (
-    <SidebarProvider defaultOpen>
-      <LabSidebar />
-      <SidebarInset>
-        {/*<header className="sticky top-0 z-10 border-b border-border bg-background/85 backdrop-blur-lg">
-          <div className="flex min-h-16 items-center gap-3 px-4 w640:px-6">
-            <div className="min-w-0">
-              <p className="m-0 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Lab
-              </p>
-              <p className="m-0 truncate text-base font-semibold text-foreground">
-                Route review workspace
-              </p>
-            </div>
-          </div>
-        </header>*/}
-        
-        <Outlet />
-      </SidebarInset>
-    </SidebarProvider>
+    <AppShell
+      defaultOpen
+      sidebar={<LabNavigation />}
+      eyebrow="Lab"
+      title="Route review workspace"
+    >
+      <Outlet />
+    </AppShell>
   );
 }

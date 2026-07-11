@@ -9,7 +9,7 @@ const SIDEBAR_WIDTH_ICON = '4.5rem';
 interface SidebarContextValue {
   open: boolean
   state: 'expanded' | 'collapsed'
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setOpen: (open: boolean) => void
   toggleSidebar: () => void
 }
 
@@ -17,22 +17,39 @@ const SidebarContext = React.createContext<SidebarContextValue | null>(null);
 
 export interface SidebarProviderProps extends React.ComponentProps<'div'> {
   defaultOpen?: boolean
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
 }
 
 export function SidebarProvider({
   defaultOpen = false,
+  open: controlledOpen,
+  onOpenChange,
   className,
   children,
   ...props
 }: SidebarProviderProps) {
-  const [open, setOpen] = React.useState(defaultOpen);
+  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
+  const open = controlledOpen ?? uncontrolledOpen;
+
+  const setOpen = React.useCallback((nextOpen: boolean) => {
+    if (controlledOpen === undefined) {
+      setUncontrolledOpen(nextOpen);
+    }
+
+    onOpenChange?.(nextOpen);
+  }, [controlledOpen, onOpenChange]);
+
+  const toggleSidebar = React.useCallback(() => {
+    setOpen(!open);
+  }, [open, setOpen]);
 
   const value = React.useMemo<SidebarContextValue>(() => ({
     open,
     state: open ? 'expanded' : 'collapsed',
     setOpen,
-    toggleSidebar: () => setOpen((prev) => !prev),
-  }), [open]);
+    toggleSidebar,
+  }), [open, setOpen, toggleSidebar]);
 
   return (
     <SidebarContext.Provider value={value}>
@@ -77,11 +94,11 @@ export function Sidebar({
 
   return (
     <>
-      {collapsible !== 'none' && (
+      {collapsible === 'offcanvas' && (
         <div
           className={cn(
             'fixed inset-0 z-30 bg-foreground/30 backdrop-blur-[1px] transition-opacity lg:hidden',
-            open ? 'opacity-100' : 'pointer-events-none opacity-0'
+            open ? 'opacity-100' : 'pointer-events-none opacity-0',
           )}
           onClick={() => setOpen(false)}
           aria-hidden="true"
@@ -95,19 +112,18 @@ export function Sidebar({
           'flex flex-col overflow-hidden border-r border-sidebar-border bg-sidebar text-sidebar-foreground',
           collapsible === 'none'
             ? 'h-full w-[var(--sidebar-width)] shrink-0'
-            : cn(
-              // Mobile: fixed slide-in overlay
-              'fixed inset-y-0 left-0 z-40 w-[var(--sidebar-width)] transition-transform duration-200 ease-linear',
-              open ? 'translate-x-0' : '-translate-x-full',
-              // Desktop: in-flow flex child, no floating
-              'lg:static lg:z-auto lg:h-full lg:w-auto lg:translate-x-0 lg:shrink-0 lg:transition-[width] lg:duration-200',
-              open
-                ? 'lg:w-[var(--sidebar-width)]'
-                : collapsible === 'icon'
-                  ? 'lg:w-[var(--sidebar-width-icon)]'
-                  : 'lg:w-0'
-            ),
-          className
+            : collapsible === 'icon'
+              ? cn(
+                'h-full shrink-0 transition-[width] duration-200 ease-linear',
+                open ? 'w-[var(--sidebar-width)]' : 'w-[var(--sidebar-width-icon)]',
+              )
+              : cn(
+                'fixed inset-y-0 left-0 z-40 w-[var(--sidebar-width)] transition-transform duration-200 ease-linear',
+                open ? 'translate-x-0' : '-translate-x-full',
+                'lg:static lg:z-auto lg:h-full lg:w-auto lg:translate-x-0 lg:shrink-0 lg:transition-[width] lg:duration-200',
+                open ? 'lg:w-[var(--sidebar-width)]' : 'lg:w-0',
+              ),
+          className,
         )}
         {...props}
       >
@@ -212,7 +228,7 @@ export function SidebarGroupLabel({
       data-slot="sidebar-group-label"
       className={cn(
         'px-3 pb-2 text-sm text-sidebar-foreground/60',
-        className
+        className,
       )}
       {...props}
     />
@@ -275,7 +291,7 @@ export function SidebarMenuButton({
     isActive
       ? 'bg-sidebar-accent text-sidebar-accent-foreground font-semibold'
       : 'text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
-    className
+    className,
   );
 
   if (asChild && React.isValidElement(children)) {
