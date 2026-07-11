@@ -9,79 +9,81 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LabRouteImport } from './routes/lab'
-import { Route as LandingRouteImport } from './routes/_landing'
-import { Route as LabIndexRouteImport } from './routes/lab.index'
-import { Route as LandingIndexRouteImport } from './routes/_landing.index'
-import { Route as LabTestErrorRouteImport } from './routes/lab.test-error'
-import { Route as LandingGettingStartedRouteImport } from './routes/_landing.getting-started'
-import { Route as LabBlogIndexRouteImport } from './routes/lab.blog.index'
-import { Route as LabBlogSlugRouteImport } from './routes/lab.blog.$slug'
+import { Route as LabRouteRouteImport } from './routes/lab/route'
+import { Route as GettingStartedRouteRouteImport } from './routes/getting-started/route'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as LabIndexRouteImport } from './routes/lab/index'
+import { Route as GettingStartedIndexRouteImport } from './routes/getting-started/index'
+import { Route as LabTestErrorRouteImport } from './routes/lab/test-error'
+import { Route as LabBlogIndexRouteImport } from './routes/lab/blog/index'
+import { Route as LabBlogSlugRouteImport } from './routes/lab/blog/$slug'
 
-const LabRoute = LabRouteImport.update({
+const LabRouteRoute = LabRouteRouteImport.update({
   id: '/lab',
   path: '/lab',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LandingRoute = LandingRouteImport.update({
-  id: '/_landing',
+const GettingStartedRouteRoute = GettingStartedRouteRouteImport.update({
+  id: '/getting-started',
+  path: '/getting-started',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LabIndexRoute = LabIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => LabRoute,
+  getParentRoute: () => LabRouteRoute,
 } as any)
-const LandingIndexRoute = LandingIndexRouteImport.update({
+const GettingStartedIndexRoute = GettingStartedIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => LandingRoute,
+  getParentRoute: () => GettingStartedRouteRoute,
 } as any)
 const LabTestErrorRoute = LabTestErrorRouteImport.update({
   id: '/test-error',
   path: '/test-error',
-  getParentRoute: () => LabRoute,
-} as any)
-const LandingGettingStartedRoute = LandingGettingStartedRouteImport.update({
-  id: '/getting-started',
-  path: '/getting-started',
-  getParentRoute: () => LandingRoute,
+  getParentRoute: () => LabRouteRoute,
 } as any)
 const LabBlogIndexRoute = LabBlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
-  getParentRoute: () => LabRoute,
+  getParentRoute: () => LabRouteRoute,
 } as any)
 const LabBlogSlugRoute = LabBlogSlugRouteImport.update({
   id: '/blog/$slug',
   path: '/blog/$slug',
-  getParentRoute: () => LabRoute,
+  getParentRoute: () => LabRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof LandingIndexRoute
-  '/lab': typeof LabRouteWithChildren
-  '/getting-started': typeof LandingGettingStartedRoute
+  '/': typeof IndexRoute
+  '/getting-started': typeof GettingStartedRouteRouteWithChildren
+  '/lab': typeof LabRouteRouteWithChildren
   '/lab/test-error': typeof LabTestErrorRoute
+  '/getting-started/': typeof GettingStartedIndexRoute
   '/lab/': typeof LabIndexRoute
   '/lab/blog/$slug': typeof LabBlogSlugRoute
   '/lab/blog/': typeof LabBlogIndexRoute
 }
 export interface FileRoutesByTo {
-  '/getting-started': typeof LandingGettingStartedRoute
+  '/': typeof IndexRoute
   '/lab/test-error': typeof LabTestErrorRoute
-  '/': typeof LandingIndexRoute
+  '/getting-started': typeof GettingStartedIndexRoute
   '/lab': typeof LabIndexRoute
   '/lab/blog/$slug': typeof LabBlogSlugRoute
   '/lab/blog': typeof LabBlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_landing': typeof LandingRouteWithChildren
-  '/lab': typeof LabRouteWithChildren
-  '/_landing/getting-started': typeof LandingGettingStartedRoute
+  '/': typeof IndexRoute
+  '/getting-started': typeof GettingStartedRouteRouteWithChildren
+  '/lab': typeof LabRouteRouteWithChildren
   '/lab/test-error': typeof LabTestErrorRoute
-  '/_landing/': typeof LandingIndexRoute
+  '/getting-started/': typeof GettingStartedIndexRoute
   '/lab/': typeof LabIndexRoute
   '/lab/blog/$slug': typeof LabBlogSlugRoute
   '/lab/blog/': typeof LabBlogIndexRoute
@@ -90,35 +92,37 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/lab'
     | '/getting-started'
+    | '/lab'
     | '/lab/test-error'
+    | '/getting-started/'
     | '/lab/'
     | '/lab/blog/$slug'
     | '/lab/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/getting-started'
-    | '/lab/test-error'
     | '/'
+    | '/lab/test-error'
+    | '/getting-started'
     | '/lab'
     | '/lab/blog/$slug'
     | '/lab/blog'
   id:
     | '__root__'
-    | '/_landing'
+    | '/'
+    | '/getting-started'
     | '/lab'
-    | '/_landing/getting-started'
     | '/lab/test-error'
-    | '/_landing/'
+    | '/getting-started/'
     | '/lab/'
     | '/lab/blog/$slug'
     | '/lab/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  LandingRoute: typeof LandingRouteWithChildren
-  LabRoute: typeof LabRouteWithChildren
+  IndexRoute: typeof IndexRoute
+  GettingStartedRouteRoute: typeof GettingStartedRouteRouteWithChildren
+  LabRouteRoute: typeof LabRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -127,14 +131,21 @@ declare module '@tanstack/react-router' {
       id: '/lab'
       path: '/lab'
       fullPath: '/lab'
-      preLoaderRoute: typeof LabRouteImport
+      preLoaderRoute: typeof LabRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_landing': {
-      id: '/_landing'
-      path: ''
+    '/getting-started': {
+      id: '/getting-started'
+      path: '/getting-started'
+      fullPath: '/getting-started'
+      preLoaderRoute: typeof GettingStartedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof LandingRouteImport
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lab/': {
@@ -142,78 +153,72 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/lab/'
       preLoaderRoute: typeof LabIndexRouteImport
-      parentRoute: typeof LabRoute
+      parentRoute: typeof LabRouteRoute
     }
-    '/_landing/': {
-      id: '/_landing/'
+    '/getting-started/': {
+      id: '/getting-started/'
       path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof LandingIndexRouteImport
-      parentRoute: typeof LandingRoute
+      fullPath: '/getting-started/'
+      preLoaderRoute: typeof GettingStartedIndexRouteImport
+      parentRoute: typeof GettingStartedRouteRoute
     }
     '/lab/test-error': {
       id: '/lab/test-error'
       path: '/test-error'
       fullPath: '/lab/test-error'
       preLoaderRoute: typeof LabTestErrorRouteImport
-      parentRoute: typeof LabRoute
-    }
-    '/_landing/getting-started': {
-      id: '/_landing/getting-started'
-      path: '/getting-started'
-      fullPath: '/getting-started'
-      preLoaderRoute: typeof LandingGettingStartedRouteImport
-      parentRoute: typeof LandingRoute
+      parentRoute: typeof LabRouteRoute
     }
     '/lab/blog/': {
       id: '/lab/blog/'
       path: '/blog'
       fullPath: '/lab/blog/'
       preLoaderRoute: typeof LabBlogIndexRouteImport
-      parentRoute: typeof LabRoute
+      parentRoute: typeof LabRouteRoute
     }
     '/lab/blog/$slug': {
       id: '/lab/blog/$slug'
       path: '/blog/$slug'
       fullPath: '/lab/blog/$slug'
       preLoaderRoute: typeof LabBlogSlugRouteImport
-      parentRoute: typeof LabRoute
+      parentRoute: typeof LabRouteRoute
     }
   }
 }
 
-interface LandingRouteChildren {
-  LandingGettingStartedRoute: typeof LandingGettingStartedRoute
-  LandingIndexRoute: typeof LandingIndexRoute
+interface GettingStartedRouteRouteChildren {
+  GettingStartedIndexRoute: typeof GettingStartedIndexRoute
 }
 
-const LandingRouteChildren: LandingRouteChildren = {
-  LandingGettingStartedRoute: LandingGettingStartedRoute,
-  LandingIndexRoute: LandingIndexRoute,
+const GettingStartedRouteRouteChildren: GettingStartedRouteRouteChildren = {
+  GettingStartedIndexRoute: GettingStartedIndexRoute,
 }
 
-const LandingRouteWithChildren =
-  LandingRoute._addFileChildren(LandingRouteChildren)
+const GettingStartedRouteRouteWithChildren =
+  GettingStartedRouteRoute._addFileChildren(GettingStartedRouteRouteChildren)
 
-interface LabRouteChildren {
+interface LabRouteRouteChildren {
   LabTestErrorRoute: typeof LabTestErrorRoute
   LabIndexRoute: typeof LabIndexRoute
   LabBlogSlugRoute: typeof LabBlogSlugRoute
   LabBlogIndexRoute: typeof LabBlogIndexRoute
 }
 
-const LabRouteChildren: LabRouteChildren = {
+const LabRouteRouteChildren: LabRouteRouteChildren = {
   LabTestErrorRoute: LabTestErrorRoute,
   LabIndexRoute: LabIndexRoute,
   LabBlogSlugRoute: LabBlogSlugRoute,
   LabBlogIndexRoute: LabBlogIndexRoute,
 }
 
-const LabRouteWithChildren = LabRoute._addFileChildren(LabRouteChildren)
+const LabRouteRouteWithChildren = LabRouteRoute._addFileChildren(
+  LabRouteRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
-  LandingRoute: LandingRouteWithChildren,
-  LabRoute: LabRouteWithChildren,
+  IndexRoute: IndexRoute,
+  GettingStartedRouteRoute: GettingStartedRouteRouteWithChildren,
+  LabRouteRoute: LabRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

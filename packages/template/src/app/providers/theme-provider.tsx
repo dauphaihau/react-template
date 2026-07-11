@@ -1,7 +1,7 @@
 import {
-  useCallback, useEffect, useMemo, useState, type ReactNode 
+  useCallback, useEffect, useMemo, useState, type ReactNode, 
 } from 'react';
-import { ThemeContextProvider, type ThemeMode } from '#/shared/client-state/theme';
+import { ThemeContext, type ThemeMode } from '#/shared/client-state/theme';
 
 const STORAGE_KEY = 'theme';
 
@@ -74,8 +74,8 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       setMode,
       toggleMode,
     }),
-    [mode, setMode, toggleMode]
+    [mode, setMode, toggleMode],
   );
 
-  return <ThemeContextProvider value={value}>{children}</ThemeContextProvider>;
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }

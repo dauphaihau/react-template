@@ -52,6 +52,7 @@ function RootComponent() {
       <QueryClientProvider client={queryClient}>
         <Outlet />
         <Toaster />
+
         <ReactQueryDevtools initialIsOpen={false} />
         <TanStackDevtools
           config={{
