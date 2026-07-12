@@ -120,6 +120,30 @@ Release the template package:
 bun run release:template
 ```
 
+Current release behavior:
+
+- `release-it` runs package validation, bumps the version, creates the release commit, creates the package tag, and pushes both to GitHub.
+- npm publishing from `release-it` is disabled locally.
+- GitHub Actions publish workflows exist for both packages and trigger on release tags.
+- npm trusted publishers still need to be configured before CI publish will succeed.
+
+To publish manually after a release:
+
+```bash
+cd packages/cli
+npm publish --access public
+```
+
+```bash
+cd packages/template
+npm publish --access public
+```
+
+Automated publish workflows:
+
+- `.github/workflows/publish-cli.yml` runs on `cli-v*`
+- `.github/workflows/publish-template.yml` runs on `template-v*`
+
 ## License
 
 MIT

@@ -1,0 +1,49 @@
+name: Publish Template
+
+on:
+  push:
+    tags:
+      - 'template-v*'
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish-template:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Typecheck template
+        run: bun run --cwd packages/template typecheck
+
+      - name: Lint template
+        run: bun run --cwd packages/template lint
+
+      - name: Test template
+        run: bun run --cwd packages/template test
+
+      - name: Build template
+        run: bun run --cwd packages/template build
+
+      - name: Publish template package
+        working-directory: packages/template
+        run: npm publish --provenance --access public
