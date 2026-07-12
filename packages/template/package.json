@@ -1,6 +1,6 @@
 {
   "name": "@dauphaihau/react-template",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "description": "A modern Vite React starter template with TanStack Router, TanStack Query, and Tailwind CSS. Built with TypeScript, Feature-Sliced Design, and best practices.",
   "license": "MIT",
   "author": "dauphaihau",
