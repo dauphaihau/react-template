@@ -1,6 +1,6 @@
 {
   "name": "@dauphaihau/create-react-template",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Scaffold a TanStack Start + React 19 + FSD app",
   "license": "MIT",
   "author": "dauphaihau",
