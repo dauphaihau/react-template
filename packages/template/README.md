@@ -32,26 +32,23 @@ This template is not a strict implementation of a single architecture. It combin
 - Module-based folder structure
 - Shared client-state folder for app-level client state
 
-## Create a Project
+## Using This Template
 
-Use the CLI package:
+This package is consumed by the `create-react-template` CLI.
+
+To scaffold a new project, use the published CLI package:
 
 ```bash
-bunx create-react-template my-app
+bunx @dauphaihau/create-react-template my-app
 ```
 
 Or with npm:
 
 ```bash
-npx create-react-template my-app
+npx @dauphaihau/create-react-template my-app
 ```
 
-Then start the app:
-
-```bash
-cd my-app
-bun run dev
-```
+For full CLI usage and local development commands, see the [CLI README](https://github.com/dauphaihau/react-template/blob/production/packages/cli/README.md).
 
 ## Optional Features
 
