@@ -30,6 +30,7 @@ This template is not a strict implementation of a single architecture. It combin
 - Zod-validated environment variables
 - Theme provider and toggle with light and dark modes
 - Module-based folder structure
+- Shared client-state folder for app-level client state
 
 ## Create a Project
 
@@ -52,6 +53,24 @@ cd my-app
 bun run dev
 ```
 
+## Optional Features
+
+The `create-react-template` CLI can scaffold additional features on top of the base template.
+
+Current optional features include:
+
+- Zustand: adds a persisted client-state store example for the lab app shell sidebar
+
+When selected, the Zustand feature adds:
+
+```txt
+src/shared/client-state/app-shell/
+├── app-shell.store.ts
+└── index.ts
+```
+
+It also wires the lab route layout to use the store for sidebar open and close state.
+
 ## Template Structure
 
 ```txt
@@ -66,15 +85,17 @@ src/
 │   └── styles/
 │       └── styles.css        # Global Tailwind styles
 ├── modules/                  # Self-contained feature or business-area modules
+│   └── blog/
+│       ├── api/              # Module-local API clients and DTOs
+│       ├── server-state/     # Module-local TanStack Query operations
+│       └── index.ts          # Public module exports
 └── shared/                   # Cross-cutting utilities and infrastructure
-    ├── api/                  # Domain API clients and DTOs
-    ├── client-state/         # Shared client state, such as theme state
+    ├── client-state/         # Shared client state and optional client-state feature scaffolds
+    ├── config/               # Shared app configuration
     ├── error/                # Shared error types and error logging helpers
     ├── hooks/                # Generic shared React hooks
     ├── lib/                  # App config, third-party setup, and generic utilities
-    ├── server-state/         # TanStack Query operations grouped by domain
     └── ui/                   # Shared UI components
-        ├── widgets/          # Composed UI blocks, such as Header and Footer
         ├── app/              # App-aware shared UI, such as ErrorBoundary and ThemeToggle
         └── primitives/       # Generic primitive UI components
 ```
@@ -87,9 +108,17 @@ Routes live in `src/app/router/routes/` and are handled by TanStack Router file-
 routes/
 ├── __root.tsx
 ├── index.tsx
-├── about.tsx
-├── blog.index.tsx
-└── blog.$slug.tsx
+├── getting-started/
+│   ├── route.tsx
+│   ├── index.tsx
+│   └── _components/
+└── lab/
+    ├── route.tsx
+    ├── index.tsx
+    ├── test-error.tsx
+    └── blog/
+        ├── index.tsx
+        └── $slug.tsx
 ```
 
 Keep route files focused on routing concerns, data loading, metadata, and page composition. Move reusable logic into `modules/` or `shared/`.
@@ -168,26 +197,29 @@ Do not create extra files for trivial content. `index.ts` is re-export only; do 
 
 ### State and Data
 
-- Server state query options, hooks, and mutations belong in `shared/server-state/{domain}/`.
+- Server state query options, hooks, and mutations belong in the owning module, for example `modules/blog/server-state/`.
 - Shared client-only state belongs in `shared/client-state/`.
-- Generic reusable React hooks belong in `shared/hooks/`; server-state hooks stay with their query or mutation operation.
-- Domain API access and DTOs belong in `shared/api/{domain}/`.
+- The base template keeps this area minimal; optional CLI features such as Zustand can scaffold concrete stores here.
+- Generic reusable React hooks belong in `shared/hooks/`; server-state hooks stay with their module query or mutation operation.
+- Domain API access and DTOs belong in the owning module, for example `modules/blog/api/`.
 - Shared API client setup belongs in `shared/lib/`.
 - Shared error types and error logging helpers belong in `shared/error/`.
-- Module-local UI behavior belongs inside the owning module.
+- Module-local UI behavior belongs inside the owning module or route-local `_components/` folder.
 
-Group server-state files by domain and operation:
+Group server-state files by module and operation:
 
 ```txt
-shared/server-state/blog/
+modules/blog/server-state/
 ├── index.ts
 ├── query-keys.ts
-├── create-blog.mutation.ts
-├── get-blog.query.ts
-└── get-blogs.query.ts
+├── mutations/
+│   └── create-blog.mutation.ts
+└── queries/
+    ├── get-blog.query.ts
+    └── get-blogs.query.ts
 ```
 
-Each domain should keep query keys local to that domain. Use query option helpers for exact query reuse, and the domain key factory for partial invalidation groups.
+Each module should keep query keys local to that module. Use query option helpers for exact query reuse, and the module key factory for partial invalidation groups.
 
 ```ts
 queryClient.invalidateQueries({ queryKey: blogQueryKeys.all });
@@ -217,10 +249,10 @@ export function useCreateBlogMutation() {
 }
 ```
 
-Group API files by domain. Keep DTOs separate from endpoint functions so large response contracts do not bloat transport code:
+Group API files by module. Keep DTOs separate from endpoint functions so large response contracts do not bloat transport code:
 
 ```txt
-shared/api/blog/
+modules/blog/api/
 ├── index.ts
 ├── dto.ts
 ├── blog.api.ts
