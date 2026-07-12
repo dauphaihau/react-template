@@ -28,9 +28,7 @@ The CLI prompts for:
 
 ## Generated Project
 
-For the generated app stack and project structure, see the template README:
-
-https://github.com/dauphaihau/react-template/tree/production/packages/template
+For the generated app stack and project structure, see the [template README](https://github.com/dauphaihau/react-template/tree/production/packages/template).
 
 ## Usage
 
