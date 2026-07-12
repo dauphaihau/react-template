@@ -9,12 +9,12 @@ export {
   isAppError,
   isError,
   isRetryableError,
-  serializeError
+  serializeError,
 } from './error-types';
 export type { SerializedError } from './error-types';
 export {
   formatError,
   isRecoverableError,
-  logError
+  logError,
 } from './logger';
 export type { ErrorLog } from './logger';

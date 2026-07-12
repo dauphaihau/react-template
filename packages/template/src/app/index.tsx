@@ -22,6 +22,6 @@ if (!rootElement.innerHTML) {
   root.render(
     <ThemeProvider>
       <RouterProvider router={router} />
-    </ThemeProvider>
+    </ThemeProvider>,
   );
 }

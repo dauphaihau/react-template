@@ -81,7 +81,7 @@ describe('mergeRefs', () => {
     const objRef = { current: null as HTMLDivElement | null };
     const merged = mergeRefs<HTMLDivElement>(
       (el) => { callbackValue = el },
-      objRef
+      objRef,
     );
     const el = document.createElement('div');
     merged(el);

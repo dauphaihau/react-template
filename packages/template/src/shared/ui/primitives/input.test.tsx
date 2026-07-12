@@ -29,7 +29,7 @@ describe('Input', () => {
         id="user-id"
         disabled
         placeholder="Username"
-      />
+      />,
     );
     const input = screen.getByPlaceholderText('Username');
     expect(input.getAttribute('name')).toBe('username');

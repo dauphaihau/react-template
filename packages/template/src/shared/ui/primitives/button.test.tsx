@@ -46,7 +46,7 @@ describe('Button', () => {
     render(
       <Button asChild>
         <a href="/go">Link button</a>
-      </Button>
+      </Button>,
     );
     const link = screen.getByRole('link', { name: /link button/i });
     expect(link).toBeInstanceOf(HTMLAnchorElement);
@@ -59,7 +59,7 @@ describe('Button', () => {
     render(
       <Button aria-label="Submit form" aria-pressed={false}>
         Submit
-      </Button>
+      </Button>,
     );
     const btn = screen.getByRole('button', { name: /submit form/i });
     expect(btn.getAttribute('aria-label')).toBe('Submit form');

@@ -36,7 +36,7 @@ const buttonVariants = cva(
       variant: 'default',
       size: 'default',
     },
-  }
+  },
 );
 
 function Button({
@@ -66,7 +66,7 @@ function Button({
     const { ref: _slotRef, ...restSlotProps } = slotProps;
     const merged = mergeProps(
       restSlotProps as Record<string, unknown>,
-      child.props as Record<string, unknown>
+      child.props as Record<string, unknown>,
     ) as Record<string, unknown>;
     merged.ref = mergeRefs(_slotRef, childRef);
     return React.cloneElement(child, merged);

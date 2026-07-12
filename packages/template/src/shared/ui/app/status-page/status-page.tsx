@@ -62,7 +62,7 @@ export function StatusPage({
                 >
                   {action.label}
                 </Button>
-              )
+              ),
         )}
       </div>
     </div>

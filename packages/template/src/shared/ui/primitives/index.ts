@@ -14,6 +14,6 @@ export {
   SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
-  useSidebar
+  useSidebar,
 } from './sidebar';
 export { Toaster } from './sonner';

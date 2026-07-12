@@ -51,10 +51,10 @@ export class ErrorBoundary extends Component<
 
     // Reset error boundary when resetKeys change
     if (
-      hasError &&
-      resetKeys &&
-      prevProps.resetKeys &&
-      !areKeysEqual(prevProps.resetKeys, resetKeys)
+      hasError
+      && resetKeys
+      && prevProps.resetKeys
+      && !areKeysEqual(prevProps.resetKeys, resetKeys)
     ) {
       this.reset();
     }
